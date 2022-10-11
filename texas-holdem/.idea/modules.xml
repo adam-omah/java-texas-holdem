@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Java Texas Holdem.iml" filepath="$PROJECT_DIR$/Java Texas Holdem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/texas-holdem.iml" filepath="$PROJECT_DIR$/texas-holdem.iml" />
     </modules>
   </component>
 </project>

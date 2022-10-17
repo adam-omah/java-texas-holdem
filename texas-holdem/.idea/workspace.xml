@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardPack/card.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CardPack/deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/card.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +53,7 @@
       <workItem from="1665503445755" duration="2102000" />
       <workItem from="1665524687106" duration="1200000" />
       <workItem from="1665602308275" duration="16000" />
-      <workItem from="1666010173330" duration="4075000" />
+      <workItem from="1666010173330" duration="4666000" />
     </task>
     <servers />
   </component>

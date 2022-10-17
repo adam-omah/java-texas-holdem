@@ -70,7 +70,7 @@ public class deck {
         for (int i = 0; i < 52; i++) {
             if (cards[i]!=null){
                 cardString += cards[i] + ",";
-                if(i%10 == 0){
+                if(i%10 == 0 && i != 0){
                     cardString += "\n";
                 }
                 cardCount++;
@@ -80,7 +80,7 @@ public class deck {
         for (int i = 0; i < 52; i++) {
             if (usedCards[i]!=null) {
                 usedCardString += usedCards[i] + ",";
-                if (i % 10 == 0) {
+                if (i % 10 == 0 && i != 0) {
                     usedCardString += "\n";
                 }
                 usedCardsCount++;
@@ -88,7 +88,7 @@ public class deck {
         }
 
         return
-                "cards: " + cardString +"\nCard Count: " + cardCount +
+                "cards:\n" + cardString +"\nCard Count: " + cardCount +
                         "\n\nusedCards: " + usedCardString +"\nUsed Card Count: " + usedCardsCount
                 ;
     }

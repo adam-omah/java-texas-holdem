@@ -19,9 +19,27 @@ public class card {
 
     @Override
     public String toString() {
+        String suitFormat = "",valueFormat ="";
+
+        switch (suit){
+            case 'S' -> suitFormat = "Spades";
+            case 'C' -> suitFormat = "Clubs";
+            case 'H' -> suitFormat = "Hearts";
+            case 'D' -> suitFormat = "Diamonds";
+
+        }
+
+        switch (value){
+            case 11 -> valueFormat = "Jack";
+            case 12 -> valueFormat = "Queen";
+            case 13 -> valueFormat = "King";
+            case 14 -> valueFormat = "Ace";
+            default -> valueFormat += value;
+
+        }
+
         return
-                "suit: " + suit +
-                        "  value: " + value;
+                " "+ valueFormat + " of " + suitFormat;
     }
 
     public card(char suit, int value){

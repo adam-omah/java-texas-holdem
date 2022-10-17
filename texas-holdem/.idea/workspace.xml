@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CardPack/card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/People/person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CardPack/deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CardPack/testCardPack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/texas-holdem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/texas-holdem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardPack/card.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/card.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +33,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowDuplicates.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +51,8 @@
       <updated>1665503444534</updated>
       <workItem from="1665503445755" duration="2102000" />
       <workItem from="1665524687106" duration="1200000" />
+      <workItem from="1665602308275" duration="16000" />
+      <workItem from="1666010173330" duration="3230000" />
     </task>
     <servers />
   </component>

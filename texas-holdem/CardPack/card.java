@@ -7,8 +7,8 @@ public class card {
     char suit;
 
 
-    // Values range from 2 to 14.
-    // Ace = 14, king = 13 queen = 12 Jack = 11
+    // Values range from 1 to 14.
+    // Ace = 14 or 1 , king = 13 queen = 12 Jack = 11
     // and 2-10 are their values respectively.
     int value;
 
@@ -17,8 +17,16 @@ public class card {
         setValue(2);
     }
 
-    public card(char suit, int value){
+    @Override
+    public String toString() {
+        return
+                "suit: " + suit +
+                        "  value: " + value;
+    }
 
+    public card(char suit, int value){
+        setSuit(suit);
+        setValue(value);
     }
 
     public void setSuit(char suit) {
@@ -26,7 +34,7 @@ public class card {
     }
 
     public void setValue(int value) {
-        if (value >= 2 && value <= 14) {
+        if (value >= 1 && value <= 14) {
             this.value = value;
         }
     }

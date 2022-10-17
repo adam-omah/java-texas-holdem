@@ -1,6 +1,7 @@
 package CardPack;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class deck {
     private card[] cards;
@@ -40,10 +41,25 @@ public class deck {
 
         }
 
+        shuffleDeck(newDeck);
 
 
         return newDeck;
 
+    }
+
+    private void shuffleDeck(card[] newDeck) {
+        card tempCard;
+        int randomSwap;
+
+        Random rand = new Random();
+
+        for (int i = 0; i < newDeck.length; i++) {
+            randomSwap = rand.nextInt(newDeck.length);
+            tempCard = newDeck[i];
+            newDeck[i] = newDeck[randomSwap];
+            newDeck[randomSwap] = newDeck[i];
+        }
     }
 
     @Override
@@ -97,4 +113,6 @@ public class deck {
     public void setUsedCards(card[] usedCards) {
         this.usedCards = usedCards;
     }
+
+
 }

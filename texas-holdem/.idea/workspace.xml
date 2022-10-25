@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/People/ameture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/People/player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/People/pro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CardPack/card.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CardPack/deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/person.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +34,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowDuplicates.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowDuplicates.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -53,7 +53,11 @@
       <workItem from="1665503445755" duration="2102000" />
       <workItem from="1665524687106" duration="1200000" />
       <workItem from="1665602308275" duration="16000" />
-      <workItem from="1666010173330" duration="4666000" />
+      <workItem from="1666010173330" duration="5324000" />
+      <workItem from="1666097028472" duration="605000" />
+      <workItem from="1666103619985" duration="130000" />
+      <workItem from="1666104840858" duration="11000" />
+      <workItem from="1666628774571" duration="1510000" />
     </task>
     <servers />
   </component>

@@ -1,31 +1,19 @@
 package People;
 
-public class person {
-    String name;
-    int age;
+import java.util.GregorianCalendar;
 
-    public person(){
-        setAge(0);
-        setName("No Name Supplied");
-    }
+//Person.java
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/*
+Person interface, pretty much the exact same as person interface
+* supplied in lectured therefore do not count this as my own material.
+*  */
 
-
-    public void setAge(int age) {
-        if (age >=0 && age <= 160){
-            this.age = age;
-        }else
-            this.age = 0;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
+public interface person {
+    public abstract String getName();
+    public abstract String getAddress();
+    public abstract GregorianCalendar getDateOfBirth();
+    public abstract void setName(String nm);
+    public abstract void setAddress(String addr);
+    public abstract void setDateOfBirth(GregorianCalendar dob);
 }

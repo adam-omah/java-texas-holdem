@@ -1,5 +1,7 @@
 package People;
 
+import CardPack.card;
+
 import java.util.GregorianCalendar;
 
 public abstract class player implements person {
@@ -13,6 +15,8 @@ public abstract class player implements person {
     public abstract String getCategory();
     public abstract int getFunds();
     public abstract int getRanking();
+
+    public abstract card[] getCards();
 
     public player(String name, String address, GregorianCalendar dateOfBirth) {
         setName(name);

@@ -1,10 +1,15 @@
 package People;
 
+import CardPack.card;
+
 import java.util.GregorianCalendar;
 
 public class ameture extends player{
     private int funds;
     private int ranking;
+
+    private card[] cards;
+
 
 
     public ameture(String name, String address, GregorianCalendar dateOfBirth) {
@@ -20,6 +25,15 @@ public class ameture extends player{
         }else
             this.funds = 0;
 
+    }
+
+    @Override
+    public card[] getCards() {
+        return cards;
+    }
+
+    public void setCards(card[] cards) {
+        this.cards = cards;
     }
 
     public void setRanking(int ranking) {

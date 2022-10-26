@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/People/ameture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/People/player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/People/pro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameRounds/GameSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameRounds/Round.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameRounds/Turn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/People/person.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/ameture.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/ameture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/player.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/pro.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/pro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +60,7 @@
       <workItem from="1666103619985" duration="130000" />
       <workItem from="1666104840858" duration="11000" />
       <workItem from="1666628774571" duration="1510000" />
+      <workItem from="1666774770319" duration="1705000" />
     </task>
     <servers />
   </component>

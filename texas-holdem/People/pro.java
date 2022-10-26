@@ -1,10 +1,14 @@
 package People;
 
+import CardPack.card;
+
 import java.util.GregorianCalendar;
 
 public class pro extends player{
     private int funds;
     private int ranking;
+
+    private card[] cards;
 
 
     public pro(String name, String address, GregorianCalendar dateOfBirth) {
@@ -12,6 +16,15 @@ public class pro extends player{
         setFunds(750);
         setRanking(playerTotal+1);
         playerTotal++;
+    }
+
+    @Override
+    public card[] getCards() {
+        return cards;
+    }
+
+    public void setCards(card[] cards) {
+        this.cards = cards;
     }
 
     public void setFunds(int funds) {

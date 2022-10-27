@@ -1,6 +1,6 @@
 package CardPack;
 
-public class card {
+public class Card {
 
     // Suits can either be:
     // S for spades, D for diamonds, C for clubs, H for hearts and J for Joker.
@@ -12,7 +12,7 @@ public class card {
     // and 2-10 are their values respectively.
     int value;
 
-    public card(){
+    public Card(){
         setSuit('J');
         setValue(2);
     }
@@ -42,7 +42,7 @@ public class card {
                 " "+ valueFormat + " of " + suitFormat;
     }
 
-    public card(char suit, int value){
+    public Card(char suit, int value){
         setSuit(suit);
         setValue(value);
     }

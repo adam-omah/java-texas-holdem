@@ -1,19 +1,18 @@
 package CardPack;
 
-import java.util.Arrays;
 import java.util.Random;
 
-public class deck {
-    private card[] cards;
-    private card[] usedCards;
+public class Deck {
+    private Card[] cards;
+    private Card[] usedCards;
 
-    public deck() {
+    public Deck() {
         cards = newDeck();
-        usedCards = new card[52];
+        usedCards = new Card[52];
     }
 
-    private card[] newDeck() {
-        card[] newDeck = new card[52];
+    private Card[] newDeck() {
+        Card[] newDeck = new Card[52];
         int current = 0;
 
         for (int i = 0; i < 4; i++) {
@@ -21,19 +20,19 @@ public class deck {
             for (int j = 2; j < 15; j++) {
                 switch (i) {
                     case 0 -> {
-                        newDeck[current] = new card('H', j);
+                        newDeck[current] = new Card('H', j);
                         current++;
                     }
                     case 1 -> {
-                        newDeck[current] = new card('S', j);
+                        newDeck[current] = new Card('S', j);
                         current++;
                     }
                     case 2 -> {
-                        newDeck[current] = new card('D', j);
+                        newDeck[current] = new Card('D', j);
                         current++;
                     }
                     default -> {
-                        newDeck[current] = new card('C', j);
+                        newDeck[current] = new Card('C', j);
                         current++;
                     }
                 }
@@ -48,8 +47,8 @@ public class deck {
 
     }
 
-    private void shuffleDeck(card[] newDeck) {
-        card tempCard;
+    private void shuffleDeck(Card[] newDeck) {
+        Card tempCard;
         int randomSwap;
 
         Random rand = new Random();
@@ -93,24 +92,24 @@ public class deck {
                 ;
     }
 
-    public deck(card[] cards, card[] usedCards) {
+    public Deck(Card[] cards, Card[] usedCards) {
         setCards(cards);
         setUsedCards(usedCards);
     }
 
-    public card[] getCards() {
+    public Card[] getCards() {
         return cards;
     }
 
-    public void setCards(card[] cards) {
+    public void setCards(Card[] cards) {
         this.cards = cards;
     }
 
-    public card[] getUsedCards() {
+    public Card[] getUsedCards() {
         return usedCards;
     }
 
-    public void setUsedCards(card[] usedCards) {
+    public void setUsedCards(Card[] usedCards) {
         this.usedCards = usedCards;
     }
 

@@ -1,22 +1,32 @@
 package People;
 
-import CardPack.card;
+import CardPack.Card;
 
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-public class ameture extends player{
+public class Amateur extends Player {
     private int funds;
     private int ranking;
 
-    private card[] cards;
+    private Card[] cards;
 
 
 
-    public ameture(String name, String address, GregorianCalendar dateOfBirth) {
+    public Amateur(String name, String address, GregorianCalendar dateOfBirth) {
         super(name, address, dateOfBirth);
         setFunds(1000);
         setRanking(playerTotal+1);
         playerTotal++;
+    }
+
+    @Override
+    public String toString() {
+        return "amateur{" +
+                "funds=" + funds +
+                ", ranking=" + ranking +
+                ", cards=" + Arrays.toString(cards) +
+                "} " + super.toString();
     }
 
     public void setFunds(int funds) {
@@ -28,11 +38,11 @@ public class ameture extends player{
     }
 
     @Override
-    public card[] getCards() {
+    public Card[] getCards() {
         return cards;
     }
 
-    public void setCards(card[] cards) {
+    public void setCards(Card[] cards) {
         this.cards = cards;
     }
 

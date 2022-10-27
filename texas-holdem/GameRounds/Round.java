@@ -1,25 +1,41 @@
 package GameRounds;
 
 import CardPack.*;
-import People.player;
+import People.Player;
+
+import java.util.Arrays;
 
 public class Round {
     private int bigBlindPos;
     private int littleBlindPos;
-    private deck cardDeck;
+    private Deck cardDeck;
 
-    private card[] theFlop;
-    private card theTurn;
-    private card theRiver;
+    private Card[] theFlop;
+    private Card theTurn;
+    private Card theRiver;
 
     private int currentCall;
 
-    private player[] players;
+    private Player[] players;
 
-    public Round(int bigBlindPos, int littleBlindPos, player[] players) {
+    public Round(int bigBlindPos, int littleBlindPos, Player[] players) {
         setBigBlindPos(bigBlindPos);
         setLittleBlindPos(littleBlindPos);
         setPlayers(players);
+        setCardDeck(new Deck());
+    }
+
+    @Override
+    public String toString() {
+        return "\nRound{" +
+                "bigBlindPos=" + bigBlindPos +
+                ", littleBlindPos=" + littleBlindPos +
+                ", theFlop=" + Arrays.toString(theFlop) +
+                ", theTurn=" + theTurn +
+                ", theRiver=" + theRiver +
+                ", currentCall=" + currentCall +
+                ", players=" + Arrays.toString(players) +
+                '}';
     }
 
     public int getBigBlindPos() {
@@ -46,43 +62,43 @@ public class Round {
         this.littleBlindPos = littleBlindPos;
     }
 
-    public deck getCardDeck() {
+    public Deck getCardDeck() {
         return cardDeck;
     }
 
-    public void setCardDeck(deck cardDeck) {
+    public void setCardDeck(Deck cardDeck) {
         this.cardDeck = cardDeck;
     }
 
-    public card[] getTheFlop() {
+    public Card[] getTheFlop() {
         return theFlop;
     }
 
-    public void setTheFlop(card[] theFlop) {
+    public void setTheFlop(Card[] theFlop) {
         this.theFlop = theFlop;
     }
 
-    public card getTheTurn() {
+    public Card getTheTurn() {
         return theTurn;
     }
 
-    public void setTheTurn(card theTurn) {
+    public void setTheTurn(Card theTurn) {
         this.theTurn = theTurn;
     }
 
-    public card getTheRiver() {
+    public Card getTheRiver() {
         return theRiver;
     }
 
-    public void setTheRiver(card theRiver) {
+    public void setTheRiver(Card theRiver) {
         this.theRiver = theRiver;
     }
 
-    public player[] getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
-    public void setPlayers(player[] players) {
+    public void setPlayers(Player[] players) {
         this.players = players;
     }
 }

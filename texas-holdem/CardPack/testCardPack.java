@@ -5,7 +5,7 @@ import javax.swing.*;
 public class testCardPack {
     public static void main(String[] args) {
         String output ="";
-        deck d1 = new deck();
+        Deck d1 = new Deck();
 
         output += d1;
 

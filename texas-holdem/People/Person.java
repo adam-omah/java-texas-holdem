@@ -9,7 +9,7 @@ Person interface, pretty much the exact same as person interface
 * supplied in lectured therefore do not count this as my own material.
 *  */
 
-public interface person {
+public interface Person {
     public abstract String getName();
     public abstract String getAddress();
     public abstract GregorianCalendar getDateOfBirth();

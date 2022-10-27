@@ -1,24 +1,24 @@
 package GameRounds;
 
-import People.player;
+import People.Player;
 
 public class Turn {
-    private player playerTurn;
+    private Player playerTurn;
     private static String action;
     private int bet;
 
     private int call;
 
-    public Turn(player playerTurn,int call) {
+    public Turn(Player playerTurn, int call) {
         setBet(0);
         setPlayerTurn(playerTurn);
     }
 
-    public player getPlayerTurn() {
+    public Player getPlayerTurn() {
         return playerTurn;
     }
 
-    public void setPlayerTurn(player playerTurn) {
+    public void setPlayerTurn(Player playerTurn) {
         this.playerTurn = playerTurn;
     }
 

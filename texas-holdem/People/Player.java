@@ -15,6 +15,8 @@ public abstract class Player implements Person {
     public abstract String getCategory();
     public abstract int getFunds();
     public abstract int getRanking();
+    public abstract int getCurrentBet();
+
 
     public abstract Card[] getCards();
 
@@ -55,4 +57,6 @@ public abstract class Player implements Person {
     }
 
     public abstract void setCards(Card[] cards);
+
+    public abstract void setCurrentBet(int currBet);
 }

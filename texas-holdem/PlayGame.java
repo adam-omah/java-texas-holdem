@@ -29,27 +29,62 @@ public class PlayGame {
 
         for (int i = 0; i < rounds.length; i++) {
 
-            Card[] roundCards;
-            roundCards = rounds[i].getCardDeck().getCards();
-            output+= rounds[i].getCardDeck().toString();
-            int currentCard = 0;
-            Player[] currPlayers = newGame.getPlayers();
-            int j;
-            for (j = 0; j < 2; j++) {
-                // for the moment all players are in the game, later will check how many players remain.
-                for (int k = 0; k < players.length; k++) {
-                    Card[] temp = {null,null};
-                    if (currPlayers[k].getCards()!=null){
-                        temp = currPlayers[k].getCards();
-                    }
-                    temp[j] = roundCards[currentCard];
 
-                    // Deals each player a card by setting their hand to this.
-                    currPlayers[k].setCards(temp);
-                    currentCard++;
-                }
-            }
+            Player[] currPlayers = newGame.getPlayers();
+            boolean bettingOver = false;
+
+            // setting blinds:
+            int bigBlind = 50;
+            int smallBlind = 25;
+
+            currPlayers[0].setCurrentBet(bigBlind);
+            currPlayers[1].setCurrentBet(smallBlind);
+
+            int currCall = bigBlind;
+            int pool = bigBlind + smallBlind;
+
+            DealCards(currPlayers, rounds[i]);
             // each round dealing ends here, players hands change after each round.
+
+            //first round of betting.
+            /*while(!bettingOver){*/
+                int playerDone = 0;
+                for (Player player: currPlayers
+                ) {
+                    PlayerTurn newTurn = new PlayerTurn(player,currCall);
+
+                    JOptionPane.showMessageDialog(null,"Player Done?");
+                }
+
+                // checks if each player is up to the current bet to continue.
+                // if players current bet is 0
+                for (Player player: currPlayers
+                     ) {
+                    if (player.getCurrentBet() == currCall|| player.getCurrentBet() == 0){
+                        playerDone++;
+                    }
+                }
+                /*if(playerDone == currPlayers.length){
+                    bettingOver = true;
+                }
+            }*/
+
+
+            // the flop.
+
+            // second round of betting.
+
+            // the street or the turn.
+
+            // third round of betting.
+
+            // the river.
+
+            //last round of betting.
+
+            // check winner!!
+
+
             // this is just a reminder that after the full itteration the players hand when called by
             // newgame.tostring will be the same for each round as its retrieving the current hand.
 
@@ -60,6 +95,28 @@ public class PlayGame {
         // End of Game, all rounds have finished:
         JOptionPane.showMessageDialog(null,newGame.toString());
 
+    }
+
+    private static void DealCards(Player[] currPlayers, Round round) {
+        Card[] roundCards;
+        roundCards = round.getCardDeck().getCards();
+        int currentCard = 0;
+
+        int j;
+        for (j = 0; j < 2; j++) {
+            // for the moment all players are in the game, later will check how many players remain.
+            for (int k = 0; k < currPlayers.length; k++) {
+                Card[] temp = {null,null};
+                if (currPlayers[k].getCards()!=null){
+                    temp = currPlayers[k].getCards();
+                }
+                temp[j] = roundCards[currentCard];
+
+                // Deals each player a card by setting their hand to this.
+                currPlayers[k].setCards(temp);
+                currentCard++;
+            }
+        }
     }
 
 }

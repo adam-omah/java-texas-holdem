@@ -11,6 +11,8 @@ public class Amateur extends Player {
 
     private Card[] cards;
 
+    private int currentBet;
+
 
 
     public Amateur(String name, String address, GregorianCalendar dateOfBirth) {
@@ -35,6 +37,15 @@ public class Amateur extends Player {
         }else
             this.funds = 0;
 
+    }
+
+    @Override
+    public int getCurrentBet() {
+        return currentBet;
+    }
+
+    public void setCurrentBet(int currentBet) {
+        this.currentBet = currentBet;
     }
 
     @Override

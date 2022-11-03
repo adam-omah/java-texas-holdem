@@ -10,7 +10,7 @@ public class Pro extends Player {
     private int ranking;
 
     private Card[] cards;
-
+    private int currentBet;
 
     public Pro(String name, String address, GregorianCalendar dateOfBirth) {
         super(name, address, dateOfBirth);
@@ -26,6 +26,16 @@ public class Pro extends Player {
                 ", ranking=" + ranking +
                 ", cards=" + Arrays.toString(cards) +
                 "} " + super.toString();
+    }
+
+    @Override
+    public int getCurrentBet() {
+        return currentBet;
+    }
+
+
+    public void setCurrentBet(int currentBet) {
+        this.currentBet = currentBet;
     }
 
     @Override

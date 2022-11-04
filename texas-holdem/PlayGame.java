@@ -29,10 +29,19 @@ public class PlayGame {
 
         for (int i = 0; i < rounds.length; i++) {
 
+            //check if player has funds to play.
+            for (Player player:currPlayers
+                 ) {
+                if(player.getFunds() <= 0){
+                    player.setStatus("out");
+                }else{
+                    player.setStatus("playing");
+                    player.setCurrentBet(0);
+                }
+            }
 
 
-            if(i == 0 ){
-            } else{
+            if (i != 0) {
                 // swapping order of players for blinds etc.
                 Player[] temp = {currPlayers[1],currPlayers[2], currPlayers[3], currPlayers[0]};
                 currPlayers = temp;
@@ -55,7 +64,7 @@ public class PlayGame {
                 }
             }
             // set small blind:
-            for (int j = indexOfBlind; j < currPlayers.length; j++) {
+            for (int j = indexOfBlind+1; j < currPlayers.length; j++) {
                 if(!currPlayers[j].getStatus().equals("out")){
                     currPlayers[j].setCurrentBet(smallBlind);
                     // remove funds from small blind
@@ -75,34 +84,33 @@ public class PlayGame {
             //first round of betting.
             //This is technically not right as in poker the first player to bet should be after
             // the big blind then swing back around to small + big blind.
-            /*while(!bettingOver){*/
-                int playerDone = 0;
-                for (Player player: currPlayers
-                ) {
-                    // if player is not out they will take a turn.
-                    if(!player.getStatus().equals("out")) {
-                        player.setStatus("playing");
-                        PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
-                        newTurn.setTurnTaken(false);
-                        while (!newTurn.getTurnTaken()) {
-                            // wait for turn to be taken.
-                        }
-                    }
-                }
+            int playerDone = 0;
+            for (Player player: currPlayers
+            ) {
+                // if player is not out they will take a turn.
+                if(!player.getStatus().equals("out")) {
 
-                // checks if each player is up to the current bet to continue.
-                // if players current bet is 0
-                for (Player player: currPlayers
-                     ) {
-                    if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
-                        playerDone++;
+                    PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
+                    newTurn.setTurnTaken(false);
+                    while (!newTurn.getTurnTaken()) {
+                        // wait for turn to be taken.
                     }
                 }
-                JOptionPane.showMessageDialog(null,"players done: " + playerDone);
-                /*if(playerDone == currPlayers.length){
-                    bettingOver = true;
+            }
+
+            // checks if each player is up to the current bet to continue.
+            for (Player player: currPlayers
+                 ) {
+                if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
+                    playerDone++;
                 }
-            }*/
+            }
+
+
+
+            JOptionPane.showMessageDialog(null,"players done: " + playerDone);
+            // if all players not "Done" enter new loop until all are done.
+
 
 
             // the flop.

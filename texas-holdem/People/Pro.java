@@ -19,6 +19,8 @@ public class Pro extends Player {
         setFunds(750);
         setRanking(playerTotal+1);
         playerTotal++;
+        setStatus("playing");
+
     }
 
     @Override

@@ -21,6 +21,8 @@ public class Amateur extends Player {
         setFunds(1000);
         setRanking(playerTotal+1);
         playerTotal++;
+        setStatus("playing");
+
     }
 
     @Override

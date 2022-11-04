@@ -50,16 +50,22 @@ public class PlayerTurn extends JFrame{
                 boolean isValidBet = false;
 
                 while(!isValidBet){
-                    int correctChars = 0;
-                    for (int i = 0; i < bet.length(); i++) {
-                        if(bet.charAt(i) >= '0' && bet.charAt(i) <= '9'){
-                            correctChars++;
-                        }
-                    }
-                    if(correctChars == bet.length()){
-                        isValidBet = true;
-                    }else
+                    if (bet.equals(null)){
                         bet = JOptionPane.showInputDialog("Invalid Bet! bets must be positive numbers only!");
+                    }else{
+
+                        int correctChars = 0;
+                        for (int i = 0; i < bet.length(); i++) {
+                            if(bet.charAt(i) >= '0' && bet.charAt(i) <= '9'){
+                                correctChars++;
+                            }
+                        }
+                        if(correctChars == bet.length()){
+                            isValidBet = true;
+                        }else
+                            bet = JOptionPane.showInputDialog("Invalid Bet! bets must be positive numbers only!");
+
+                    }
                 }
                 // change bet into int:
                 int betInt = Integer.parseInt(bet);
@@ -70,18 +76,18 @@ public class PlayerTurn extends JFrame{
                     player.setStatus("allin");
 
                     // checks if bet is greater than current call.
-                    if(betInt >= round.getCurrentCall()){
+                    if((betInt + player.getCurrentBet()) >= round.getCurrentCall()){
                         //set new call
-                        round.setCurrentCall(betInt);
+                        round.setCurrentCall(betInt + player.getCurrentBet());
                     }
 
                 }else{
                     // checks if bet is greater than current call.
-                    if(betInt >= round.getCurrentCall()){
+                    if((betInt + player.getCurrentBet()) >= round.getCurrentCall()){
                         //set new call
-                        round.setCurrentCall(betInt);
+                        round.setCurrentCall(player.getCurrentBet() + betInt);
                     }else{
-                        if (round.getCurrentCall() <= player.getFunds()){
+                        if (round.getCurrentCall() <= (player.getFunds() + player.getCurrentBet())){
                             // player betting less than current call turns into a call.
                             betInt = round.getCurrentCall();
                         }
@@ -119,9 +125,9 @@ public class PlayerTurn extends JFrame{
                     setVisible(false);
                 }else{
                     //check player funds first.
-                    if (player.getFunds() >= round.getCurrentCall()){
+                    if ((player.getFunds() + player.getCurrentBet()) >= round.getCurrentCall()){
 
-                        player.setFunds(round.getCurrentCall() - player.getCurrentBet());
+                        player.setFunds(player.getFunds() - (round.getCurrentCall() - player.getCurrentBet()));
 
                         //add bet to pool:
                         round.setPool(round.getPool() + (round.getCurrentCall() - player.getCurrentBet()));
@@ -134,7 +140,7 @@ public class PlayerTurn extends JFrame{
                     }else {
                         // player must go all in to call if not enough funds.
                         player.setStatus("allin");
-                        
+
                         //add bet to pool:
                         round.setPool(round.getPool() + player.getFunds());
 
@@ -161,6 +167,28 @@ public class PlayerTurn extends JFrame{
                 setTurnTaken(true);
                 setVisible(false);
 
+            }
+        });
+        btnAllin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //player goes all in.
+
+                // checks if players all in is greater than current call.
+                if((player.getCurrentBet() + player.getFunds()) >= round.getCurrentCall()){
+                    // set new call
+                    round.setCurrentCall(player.getCurrentBet()+ player.getFunds());
+                }
+
+                // set new bet for player.
+                player.setCurrentBet(player.getCurrentBet()+ player.getFunds());
+                //remove funds from player.
+                player.setFunds(0);
+
+                player.setStatus("allin");
+
+                setTurnTaken(true);
+                setVisible(false);
             }
         });
     }

@@ -24,38 +24,69 @@ public class PlayGame {
 
         String output = "";
 
-
+        Player[] currPlayers = newGame.getPlayers();
 
 
         for (int i = 0; i < rounds.length; i++) {
 
 
-            Player[] currPlayers = newGame.getPlayers();
+
+            if(i == 0 ){
+            } else{
+                // swapping order of players for blinds etc.
+                Player[] temp = {currPlayers[1],currPlayers[2], currPlayers[3], currPlayers[0]};
+                currPlayers = temp;
+            }
             boolean bettingOver = false;
 
             // setting blinds:
             int bigBlind = 50;
             int smallBlind = 25;
+            int indexOfBlind = 0;
 
-            currPlayers[0].setCurrentBet(bigBlind);
-            currPlayers[1].setCurrentBet(smallBlind);
+            // get index for big blind:
+            for (int j = 0; j < currPlayers.length; j++) {
+                if(!currPlayers[j].getStatus().equals("out")){
+                    currPlayers[j].setCurrentBet(bigBlind);
+                    // remove funds from blind.
+                    currPlayers[j].setFunds(currPlayers[j].getFunds() - bigBlind);
+                    indexOfBlind = j;
+                    break;
+                }
+            }
+            // set small blind:
+            for (int j = indexOfBlind; j < currPlayers.length; j++) {
+                if(!currPlayers[j].getStatus().equals("out")){
+                    currPlayers[j].setCurrentBet(smallBlind);
+                    // remove funds from small blind
+                    currPlayers[j].setFunds(currPlayers[j].getFunds() - smallBlind);
+                    break;
+                }
+            }
 
-            int currCall = bigBlind;
-            int pool = bigBlind + smallBlind;
+
+
+            rounds[i].setCurrentCall(bigBlind);
+            rounds[i].setPool(bigBlind + smallBlind);
 
             DealCards(currPlayers, rounds[i]);
             // each round dealing ends here, players hands change after each round.
 
             //first round of betting.
+            //This is technically not right as in poker the first player to bet should be after
+            // the big blind then swing back around to small + big blind.
             /*while(!bettingOver){*/
                 int playerDone = 0;
                 for (Player player: currPlayers
                 ) {
-                    PlayerTurn newTurn = new PlayerTurn(player,currCall);
-                    newTurn.setTurnTaken(false);
-                    while (!newTurn.getTurnTaken()){
-                        // wait for turn to be taken.
-
+                    // if player is not out they will take a turn.
+                    if(!player.getStatus().equals("out")) {
+                        player.setStatus("playing");
+                        PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
+                        newTurn.setTurnTaken(false);
+                        while (!newTurn.getTurnTaken()) {
+                            // wait for turn to be taken.
+                        }
                     }
                 }
 
@@ -63,10 +94,11 @@ public class PlayGame {
                 // if players current bet is 0
                 for (Player player: currPlayers
                      ) {
-                    if (player.getCurrentBet() == currCall|| player.getCurrentBet() == 0){
+                    if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
                         playerDone++;
                     }
                 }
+                JOptionPane.showMessageDialog(null,"players done: " + playerDone);
                 /*if(playerDone == currPlayers.length){
                     bettingOver = true;
                 }

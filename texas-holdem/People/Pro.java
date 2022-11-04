@@ -94,4 +94,5 @@ public class Pro extends Player {
     public int getRanking() {
         return ranking;
     }
+
 }

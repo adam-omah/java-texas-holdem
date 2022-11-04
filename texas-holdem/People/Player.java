@@ -63,4 +63,6 @@ public abstract class Player implements Person {
     public abstract void setCurrentBet(int currBet);
 
     public  abstract void setStatus(String status);
+
+    public abstract void setFunds(int newFunds);
 }

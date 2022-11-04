@@ -16,6 +16,8 @@ public class Round {
 
     private int currentCall;
 
+    private int pool;
+
     private Player[] players;
 
     public Round(int bigBlindPos, int littleBlindPos, Player[] players) {
@@ -42,6 +44,11 @@ public class Round {
         return bigBlindPos;
     }
 
+    public void setBigBlindPos(int bigBlindPos) {
+        this.bigBlindPos = bigBlindPos;
+    }
+
+
     public int getCurrentCall() {
         return currentCall;
     }
@@ -50,8 +57,12 @@ public class Round {
         this.currentCall = currentCall;
     }
 
-    public void setBigBlindPos(int bigBlindPos) {
-        this.bigBlindPos = bigBlindPos;
+    public int getPool() {
+        return pool;
+    }
+
+    public void setPool(int pool) {
+        this.pool = pool;
     }
 
     public int getLittleBlindPos() {

@@ -12,6 +12,8 @@ public class Pro extends Player {
     private Card[] cards;
     private int currentBet;
 
+    private String status;
+
     public Pro(String name, String address, GregorianCalendar dateOfBirth) {
         super(name, address, dateOfBirth);
         setFunds(750);
@@ -33,6 +35,21 @@ public class Pro extends Player {
         return currentBet;
     }
 
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+
+    // Status added to make it more visible if player is folded, all in or still playing the game.
+    @Override
+    public void setStatus(String status) {
+        if(status.equals("playing")|| status.equals("fold") || status.equals("allin") || status.equals("out")){
+            this.status = status;
+        }else
+            this.status = "fold";
+
+    }
 
     public void setCurrentBet(int currentBet) {
         this.currentBet = currentBet;

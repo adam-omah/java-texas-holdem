@@ -52,8 +52,11 @@ public class PlayGame {
                 for (Player player: currPlayers
                 ) {
                     PlayerTurn newTurn = new PlayerTurn(player,currCall);
+                    newTurn.setTurnTaken(false);
+                    while (!newTurn.getTurnTaken()){
+                        // wait for turn to be taken.
 
-                    JOptionPane.showMessageDialog(null,"Player Done?");
+                    }
                 }
 
                 // checks if each player is up to the current bet to continue.

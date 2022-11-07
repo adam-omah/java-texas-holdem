@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardPack/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People/Amateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Amateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People/Pro.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Pro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerTurn.form" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerTurn.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayerTurn.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerTurn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Table.form" beforeDir="false" afterPath="$PROJECT_DIR$/Table.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +68,8 @@
       <workItem from="1667493520503" duration="3830000" />
       <workItem from="1667566259753" duration="8523000" />
       <workItem from="1667579205201" duration="3576000" />
-      <workItem from="1667822170833" duration="3266000" />
+      <workItem from="1667822170833" duration="3300000" />
+      <workItem from="1667843335227" duration="5669000" />
     </task>
     <servers />
   </component>

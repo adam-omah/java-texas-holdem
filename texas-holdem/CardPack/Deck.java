@@ -57,7 +57,7 @@ public class Deck {
             randomSwap = rand.nextInt(newDeck.length);
             tempCard = newDeck[i];
             newDeck[i] = newDeck[randomSwap];
-            newDeck[randomSwap] = newDeck[i];
+            newDeck[randomSwap] = tempCard;
         }
     }
 

@@ -1,3 +1,4 @@
+import CardPack.Card;
 import GameRounds.Round;
 import People.Player;
 
@@ -15,6 +16,7 @@ public class PlayerTurn extends JFrame{
     private JButton btnAllin;
     private JLabel lblPlayerFunds;
     private JLabel lblCurrentBet;
+    private JButton btnViewHand;
 
     private boolean turnTaken;
 
@@ -32,14 +34,14 @@ public class PlayerTurn extends JFrame{
         setTitle("please take your turn");
         setSize(450,450);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
+        // get status is just here for testing purposes.
         lblPlayerName.setText(player.getName() + " " + player.getStatus());
         lblPlayerFunds.setText("Your Funds: " + player.getFunds());
         lblCurrentBet.setText("Your Current Bet is: " + player.getCurrentBet());
         if (round.getCurrentCall() == player.getCurrentBet()){
-            lblCurrentCall.setText("You Can Check Or Bet");
+            lblCurrentCall.setText(" You Can Check Or Bet ");
         }else{
-            lblCurrentCall.setText("To Call is : " + (round.getCurrentCall() - player.getCurrentBet()) +"\nYou can Call, Raise Or Fold.");
+            lblCurrentCall.setText("To Call is : " + (round.getCurrentCall() - player.getCurrentBet()) + "  You can Call, Raise Or Fold.");
         }
 
 
@@ -51,7 +53,8 @@ public class PlayerTurn extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // bet action:
                 // player input for bet:
-                String bet = JOptionPane.showInputDialog("Please Make A Bet!");
+                String bet = JOptionPane.showInputDialog("Please Make A Bet! A bet is your Current Bet + number entered.");
+                // if player is big blind and + 100 bet, the bet amount will be 150 if big blind is 50.
                 boolean isValidBet = false;
 
                 while(!isValidBet){
@@ -97,6 +100,7 @@ public class PlayerTurn extends JFrame{
                             betInt = round.getCurrentCall();
                         }
                     }
+                    player.setStatus("playing");
                 }
 
                 // checks if bet is greater than current call.
@@ -126,8 +130,10 @@ public class PlayerTurn extends JFrame{
 
                 if(player.getCurrentBet() == round.getCurrentCall()){
                     //player checks.
+
                     setTurnTaken(true);
                     setVisible(false);
+                    player.setStatus("playing");
                 }else{
                     //check player funds first.
                     if ((player.getFunds() + player.getCurrentBet()) >= round.getCurrentCall()){
@@ -139,7 +145,7 @@ public class PlayerTurn extends JFrame{
 
                         player.setCurrentBet(round.getCurrentCall());
 
-
+                        player.setStatus("playing");
 
 
                     }else {
@@ -154,6 +160,12 @@ public class PlayerTurn extends JFrame{
                         player.setFunds(0);
 
                     }
+
+                    //checks again if player is all in:
+                    if (player.getFunds() == 0){
+                        player.setStatus("allin");
+                    }
+
                     setTurnTaken(true);
                     setVisible(false);
                 }
@@ -194,6 +206,22 @@ public class PlayerTurn extends JFrame{
 
                 setTurnTaken(true);
                 setVisible(false);
+            }
+        });
+        btnViewHand.addActionListener(new ActionListener() {
+
+            // View Player's Hand, or see cards.
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cardString = "";
+                Card[] cards = player.getCards();
+
+                for (Card card:cards
+                     ) {
+                    cardString += card.toString() + "\n";
+                }
+
+                JOptionPane.showMessageDialog(null, "Your cards Are:\n\n" + cardString);
             }
         });
     }

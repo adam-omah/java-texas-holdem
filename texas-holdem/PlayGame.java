@@ -24,6 +24,8 @@ public class PlayGame {
 
         Player[] currPlayers = newGame.getPlayers();
 
+        Table newTable = new Table(newGame);
+
 
         for (int i = 0; i < rounds.length; i++) {
 
@@ -120,12 +122,12 @@ public class PlayGame {
             // this is just a reminder that after the full itteration the players hand when called by
             // newgame.tostring will be the same for each round as it's retrieving the current hand.
 
-            JOptionPane.showMessageDialog(null,newGame.toString());
+            JOptionPane.showMessageDialog(null,"Round Over!!!\n" + newGame.toString());
         }
 
 
         // End of Game, all rounds have finished:
-        JOptionPane.showMessageDialog(null,newGame.toString());
+        JOptionPane.showMessageDialog(null,"Game over!!!\n" +newGame.toString());
 
     }
 

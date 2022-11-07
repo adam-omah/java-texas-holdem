@@ -20,7 +20,7 @@ public class Pro extends Player {
         setRanking(playerTotal+1);
         playerTotal++;
         setStatus("playing");
-
+        setCurrentBet(0);
     }
 
     @Override

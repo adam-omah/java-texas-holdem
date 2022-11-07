@@ -46,7 +46,7 @@ public class Pro extends Player {
     // Status added to make it more visible if player is folded, all in or still playing the game.
     @Override
     public void setStatus(String status) {
-        if(status.equals("playing")|| status.equals("fold") || status.equals("allin") || status.equals("out")){
+        if(status.equals("playing")|| status.equals("newTurn")|| status.equals("fold") || status.equals("allin") || status.equals("out")){
             this.status = status;
         }else
             this.status = "fold";

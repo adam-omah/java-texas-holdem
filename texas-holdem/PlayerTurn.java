@@ -29,11 +29,11 @@ public class PlayerTurn extends JFrame{
     public PlayerTurn(Player player, Round round){
 
         setContentPane(frmPlayerTurn);
-        setTitle("Please Take your Turn");
+        setTitle("please take your turn");
         setSize(450,450);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        lblPlayerName.setText(player.getName());
+        lblPlayerName.setText(player.getName() + " " + player.getStatus());
         lblPlayerFunds.setText("Your Funds: " + player.getFunds());
         lblCurrentBet.setText("Your Current Bet is: " + player.getCurrentBet());
         if (round.getCurrentCall() == player.getCurrentBet()){

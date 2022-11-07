@@ -33,7 +33,7 @@ public class PlayGame {
                 if(player.getFunds() <= 0){
                     player.setStatus("out");
                 }else{
-                    player.setStatus("playing");
+                    player.setStatus("newTurn");
                     player.setCurrentBet(0);
                 }
             }
@@ -95,12 +95,16 @@ public class PlayGame {
                     }
                 }
             }
-            
+
             playersBetting(rounds, currPlayers, i);
 
             // the flop.
 
             // second round of betting.
+                //set players to new turn
+                newPlayerTurns(currPlayers);
+                // set betting again after flop.
+                playersBetting(rounds, currPlayers, i);
 
             // the street or the turn.
 
@@ -114,7 +118,7 @@ public class PlayGame {
 
 
             // this is just a reminder that after the full itteration the players hand when called by
-            // newgame.tostring will be the same for each round as its retrieving the current hand.
+            // newgame.tostring will be the same for each round as it's retrieving the current hand.
 
             JOptionPane.showMessageDialog(null,newGame.toString());
         }
@@ -125,6 +129,15 @@ public class PlayGame {
 
     }
 
+    private static void newPlayerTurns(Player[] currPlayers) {
+        for (Player player: currPlayers
+             ) {
+            if (player.getStatus().equals("playing")){
+                player.setStatus("newTurn");
+            }
+        }
+    }
+
     private static void playersBetting(Round[] rounds, Player[] currPlayers, int i) {
         // if all players not "Done" enter new loop until all are done.
         boolean allPlayersDone = false;
@@ -133,10 +146,9 @@ public class PlayGame {
 
 
         while(!allPlayersDone){
-            playerDone = 0;
             for (Player player: currPlayers
             ) {
-                if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
+                if ((player.getCurrentBet() == rounds[i].getCurrentCall() && !player.getStatus().equals("newTurn"))|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
                     playerDone++;
                 }
             }
@@ -149,8 +161,8 @@ public class PlayGame {
                 for (Player player: currPlayers
                 ) {
                     // if player is not out they will take a turn.
-                    if(!player.getStatus().equals("out") || !player.getStatus().equals("fold")) {
-
+                    if(player.getStatus().equals("playing") || player.getStatus().equals("newTurn")) {
+                        player.setStatus("playing");
                         PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
                         newTurn.setTurnTaken(false);
                         while (!newTurn.getTurnTaken()) {
@@ -158,6 +170,7 @@ public class PlayGame {
                         }
                     }
                 }
+                playerDone = 0;
             }
 
         }

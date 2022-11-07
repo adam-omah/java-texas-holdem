@@ -13,6 +13,8 @@ public class PlayerTurn extends JFrame{
     private JButton btnFold;
     private JButton btnBet;
     private JButton btnAllin;
+    private JLabel lblPlayerFunds;
+    private JLabel lblCurrentBet;
 
     private boolean turnTaken;
 
@@ -29,12 +31,15 @@ public class PlayerTurn extends JFrame{
         setContentPane(frmPlayerTurn);
         setTitle("Please Take your Turn");
         setSize(450,450);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         lblPlayerName.setText(player.getName());
+        lblPlayerFunds.setText("Your Funds: " + player.getFunds());
+        lblCurrentBet.setText("Your Current Bet is: " + player.getCurrentBet());
         if (round.getCurrentCall() == player.getCurrentBet()){
             lblCurrentCall.setText("You Can Check Or Bet");
         }else{
-            lblCurrentCall.setText("Current Call is : " + (round.getCurrentCall() - player.getCurrentBet()) +"\nYou can Call, Raise Or Fold.");
+            lblCurrentCall.setText("To Call is : " + (round.getCurrentCall() - player.getCurrentBet()) +"\nYou can Call, Raise Or Fold.");
         }
 
 

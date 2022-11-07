@@ -18,8 +18,6 @@ public class PlayGame {
         GameSession newGame = new GameSession(players);
 
 
-        JOptionPane.showMessageDialog(null,newGame.toString());
-
         Round[] rounds = newGame.getRounds();
 
         String output = "";
@@ -84,7 +82,7 @@ public class PlayGame {
             //first round of betting.
             //This is technically not right as in poker the first player to bet should be after
             // the big blind then swing back around to small + big blind.
-            int playerDone = 0;
+
             for (Player player: currPlayers
             ) {
                 // if player is not out they will take a turn.
@@ -97,21 +95,8 @@ public class PlayGame {
                     }
                 }
             }
-
-            // checks if each player is up to the current bet to continue.
-            for (Player player: currPlayers
-                 ) {
-                if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
-                    playerDone++;
-                }
-            }
-
-
-
-            JOptionPane.showMessageDialog(null,"players done: " + playerDone);
-            // if all players not "Done" enter new loop until all are done.
-
-
+            
+            playersBetting(rounds, currPlayers, i);
 
             // the flop.
 
@@ -138,6 +123,44 @@ public class PlayGame {
         // End of Game, all rounds have finished:
         JOptionPane.showMessageDialog(null,newGame.toString());
 
+    }
+
+    private static void playersBetting(Round[] rounds, Player[] currPlayers, int i) {
+        // if all players not "Done" enter new loop until all are done.
+        boolean allPlayersDone = false;
+        // checks if each player is up to the current bet to continue.
+        int playerDone = 0;
+
+
+        while(!allPlayersDone){
+            playerDone = 0;
+            for (Player player: currPlayers
+            ) {
+                if (player.getCurrentBet() == rounds[i].getCurrentCall()|| player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")){
+                    playerDone++;
+                }
+            }
+
+            JOptionPane.showMessageDialog(null,"players done: " + playerDone);
+
+            if (playerDone == currPlayers.length){
+                allPlayersDone = true;
+            }else{
+                for (Player player: currPlayers
+                ) {
+                    // if player is not out they will take a turn.
+                    if(!player.getStatus().equals("out") || !player.getStatus().equals("fold")) {
+
+                        PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
+                        newTurn.setTurnTaken(false);
+                        while (!newTurn.getTurnTaken()) {
+                            // wait for turn to be taken.
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
     private static void DealCards(Player[] currPlayers, Round round) {

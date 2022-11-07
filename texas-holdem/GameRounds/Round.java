@@ -6,8 +6,7 @@ import People.Player;
 import java.util.Arrays;
 
 public class Round {
-    private int bigBlindPos;
-    private int littleBlindPos;
+    private int cardIndex;
     private Deck cardDeck;
 
     private Card[] theFlop;
@@ -21,17 +20,14 @@ public class Round {
     private Player[] players;
 
     public Round(int bigBlindPos, int littleBlindPos, Player[] players) {
-        setBigBlindPos(bigBlindPos);
-        setLittleBlindPos(littleBlindPos);
         setPlayers(players);
         setCardDeck(new Deck());
+        setCardIndex(0);
     }
 
     @Override
     public String toString() {
         return "\nRound{" +
-                "bigBlindPos=" + bigBlindPos +
-                ", littleBlindPos=" + littleBlindPos +
                 ", theFlop=" + Arrays.toString(theFlop) +
                 ", theTurn=" + theTurn +
                 ", theRiver=" + theRiver +
@@ -40,13 +36,7 @@ public class Round {
                 '}';
     }
 
-    public int getBigBlindPos() {
-        return bigBlindPos;
-    }
 
-    public void setBigBlindPos(int bigBlindPos) {
-        this.bigBlindPos = bigBlindPos;
-    }
 
 
     public int getCurrentCall() {
@@ -65,12 +55,12 @@ public class Round {
         this.pool = pool;
     }
 
-    public int getLittleBlindPos() {
-        return littleBlindPos;
+    public int getCardIndex() {
+        return cardIndex;
     }
 
-    public void setLittleBlindPos(int littleBlindPos) {
-        this.littleBlindPos = littleBlindPos;
+    public void setCardIndex(int cardIndex) {
+        this.cardIndex = cardIndex;
     }
 
     public Deck getCardDeck() {

@@ -130,10 +130,11 @@ public class PlayerTurn extends JFrame{
 
                 if(player.getCurrentBet() == round.getCurrentCall()){
                     //player checks.
+                    player.setStatus("playing");
 
                     setTurnTaken(true);
                     setVisible(false);
-                    player.setStatus("playing");
+
                 }else{
                     //check player funds first.
                     if ((player.getFunds() + player.getCurrentBet()) >= round.getCurrentCall()){

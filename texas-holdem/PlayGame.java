@@ -55,26 +55,28 @@ public class PlayGame {
             // setting blinds:
             int bigBlind = 50;
             int smallBlind = 25;
-            int indexOfBlind = 0;
 
-            // get index for big blind:
+            // get index for small blind:
             for (int j = 0; j < currPlayers.length; j++) {
+                if(!currPlayers[j].getStatus().equals("out")){
+
+                    currPlayers[j].setCurrentBet(smallBlind);
+                    // remove funds from small blind
+                    currPlayers[j].setFunds(currPlayers[j].getFunds() - smallBlind);
+                    newTable.updatePlayer(currPlayers[j]);
+                    rounds[i].setBlindIndex(j);
+                    break;
+                }
+            }
+            // set big blind:
+            for (int j = rounds[i].getBlindIndex() +1; j < currPlayers.length; j++) {
                 if(!currPlayers[j].getStatus().equals("out")){
                     currPlayers[j].setCurrentBet(bigBlind);
                     // remove funds from blind.
                     currPlayers[j].setFunds(currPlayers[j].getFunds() - bigBlind);
                     newTable.updatePlayer(currPlayers[j]);
-                    indexOfBlind = j;
-                    break;
-                }
-            }
-            // set small blind:
-            for (int j = indexOfBlind+1; j < currPlayers.length; j++) {
-                if(!currPlayers[j].getStatus().equals("out")){
-                    currPlayers[j].setCurrentBet(smallBlind);
-                    // remove funds from small blind
-                    currPlayers[j].setFunds(currPlayers[j].getFunds() - smallBlind);
-                    newTable.updatePlayer(currPlayers[j]);
+
+                    rounds[i].setBlindIndex(j);
                     break;
                 }
             }
@@ -96,7 +98,36 @@ public class PlayGame {
             //This is technically not right as in poker the first player to bet should be after
             // the big blind then swing back around to small + big blind.
 
-            for (Player player: currPlayers
+
+            for (int j = (rounds[i].getBlindIndex() + 1); j < currPlayers.length; j++) {
+                // if player is not out they will take a turn.
+                if(!currPlayers[j].getStatus().equals("out")) {
+
+                    PlayerTurn newTurn = new PlayerTurn(currPlayers[j], rounds[i]);
+                    newTurn.setTurnTaken(false);
+                    while (!newTurn.getTurnTaken()) {
+                        // wait for turn to be taken.
+                    }
+
+                    newTable.updatePlayer(currPlayers[j]);
+                }
+            }
+            for (int j = 0; j < rounds[i].getBlindIndex() + 1; j++) {
+                // if player is not out they will take a turn.
+                if(!currPlayers[j].getStatus().equals("out")) {
+
+                    PlayerTurn newTurn = new PlayerTurn(currPlayers[j], rounds[i]);
+                    newTurn.setTurnTaken(false);
+                    while (!newTurn.getTurnTaken()) {
+                        // wait for turn to be taken.
+                    }
+
+                    newTable.updatePlayer(currPlayers[j]);
+                }
+            }
+
+
+            /*for (Player player: currPlayers
             ) {
                 // if player is not out they will take a turn.
                 if(!player.getStatus().equals("out")) {
@@ -109,7 +140,7 @@ public class PlayGame {
 
                     newTable.updatePlayer(player);
                 }
-            }
+            }*/
 
             playersBetting(rounds[i], currPlayers, newTable);
 

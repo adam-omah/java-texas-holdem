@@ -9,6 +9,8 @@ public class Round {
     private int cardIndex;
     private Deck cardDeck;
 
+    private int blindIndex;
+
     private Card[] theFlop;
     private Card theTurn;
     private Card theRiver;
@@ -118,5 +120,13 @@ public class Round {
 
     public void setPlayers(Player[] players) {
         this.players = players;
+    }
+
+    public int getBlindIndex() {
+        return blindIndex;
+    }
+
+    public void setBlindIndex(int blindIndex) {
+        this.blindIndex = blindIndex;
     }
 }

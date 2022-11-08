@@ -75,24 +75,41 @@ public class Round {
         return theFlop;
     }
 
-    public void setTheFlop(Card[] theFlop) {
-        this.theFlop = theFlop;
+    public void setTheFlop() {
+        Card[] cards = this.getCardDeck().getCards();
+
+        Card c1 = cards[this.getCardIndex()];
+        this.setCardIndex(this.getCardIndex()+1);
+        Card c2 = cards[this.getCardIndex()];
+        this.setCardIndex(this.getCardIndex()+1);
+        Card c3 = cards[this.getCardIndex()];
+        this.setCardIndex(this.getCardIndex()+1);
+
+        Card[] flop = {c1,c2,c3};
+
+        this.theFlop = flop;
     }
 
     public Card getTheTurn() {
         return theTurn;
     }
 
-    public void setTheTurn(Card theTurn) {
-        this.theTurn = theTurn;
+    public void setTheTurn() {
+        Card[] cards = this.getCardDeck().getCards();
+        Card c1 = cards[this.getCardIndex()];
+        this.setCardIndex(this.getCardIndex()+1);
+        theTurn = c1;
     }
 
     public Card getTheRiver() {
         return theRiver;
     }
 
-    public void setTheRiver(Card theRiver) {
-        this.theRiver = theRiver;
+    public void setTheRiver() {
+        Card[] cards = this.getCardDeck().getCards();
+        Card c1 = cards[this.getCardIndex()];
+        this.setCardIndex(this.getCardIndex()+1);
+        theRiver = c1;
     }
 
     public Player[] getPlayers() {

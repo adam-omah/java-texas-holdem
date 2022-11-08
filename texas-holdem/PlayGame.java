@@ -117,10 +117,7 @@ public class PlayGame {
 
 
 
-            dealFlop(rounds[i]);
-
-
-
+            rounds[i].setTheFlop();
             newTable.updateFlop(rounds[i]);
 
 
@@ -131,19 +128,39 @@ public class PlayGame {
                 playersBetting(rounds[i], currPlayers, newTable);
 
             // the street or the turn.
+            rounds[i].setTheTurn();
+            newTable.updateTheTurn(rounds[i]);
 
             // third round of betting.
+                //set players to new turn
+                newPlayerTurns(currPlayers);
+                // set betting again after flop.
+                playersBetting(rounds[i], currPlayers, newTable);
+
 
             // the river.
+            rounds[i].setTheRiver();
+            newTable.updateTheRiver(rounds[i]);
 
             //last round of betting.
+                //set players to new turn
+                newPlayerTurns(currPlayers);
+                // set betting again after flop.
+                playersBetting(rounds[i], currPlayers, newTable);
+
+            // Show Hands:
+
+            for (Player player: currPlayers
+                 ) {
+                newTable.showPlayersHands(player);
+            }
 
             // check winner!!
 
 
 
             // this is just a reminder that after the full itteration the players hand when called by
-            // newgame.tostring will be the same for each round as it's retrieving the current hand.
+            // newgame.tostring will show the same hand for each round as it's retrieving the current hand.
             JOptionPane.showMessageDialog(null,"Round Over!!!\n" + newGame.toString());
         }
 
@@ -153,20 +170,8 @@ public class PlayGame {
 
     }
 
-    private static void dealFlop(Round round) {
-        Card[] cards = round.getCardDeck().getCards();
 
-        Card c1 = cards[round.getCardIndex()];
-        round.setCardIndex(round.getCardIndex()+1);
-        Card c2 = cards[round.getCardIndex()];
-        round.setCardIndex(round.getCardIndex()+1);
-        Card c3 = cards[round.getCardIndex()];
-        round.setCardIndex(round.getCardIndex()+1);
 
-        Card[] flop = {c1,c2,c3};
-
-        round.setTheFlop(flop);
-    }
 
     private static void newPlayerTurns(Player[] currPlayers) {
         for (Player player: currPlayers

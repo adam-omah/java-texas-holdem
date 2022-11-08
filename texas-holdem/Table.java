@@ -73,31 +73,42 @@ public class Table extends JFrame {
             text += "Is Out";
         } else if (player.getStatus().equals("fold")) {
             text += "Folded";
-        }else{
+        } else if (player.getStatus().equals("allin")) {
+            text += "Current Bet: " + player.getCurrentBet() + " All-In!";
+        }else {
             text += "Current Bet: " + player.getCurrentBet();
         }
 
-        if(player == player1){
-            txtPlayer1.setText(text);
+        setPlayerText(player, text);
+    }
+
+
+
+    public void showPlayersHands(Player player){
+        String text = "";
+
+        text += "\n" + player.getName() + " Funds " + player.getFunds() + "\n\n";
+        if (player.getStatus().equals("out")){
+            text += "Is Out";
+        } else if (player.getStatus().equals("fold")) {
+            text += "Folded";
+        }else if (player.getStatus().equals("allin")) {
+            text += "Current Bet: " + player.getCurrentBet() + " All-In!\n\nCards Are: ";
+            Card[] cards = player.getCards();
+            for (Card card:cards
+            ) {
+                text += "\n" + card.toString();
+            }
+        }else {
+            text += "Current Bet: " + player.getCurrentBet() + "\n\nCards Are: ";
+            Card[] cards = player.getCards();
+            for (Card card:cards
+                 ) {
+                text += "\n" + card.toString();
+            }
         }
 
-        if(player == player2){
-            txtPlayer2.setText(text);
-        }
-
-        if(player == player3){
-            txtPlayer3.setText(text);
-        }
-
-        if(player == player4){
-            txtPlayer4.setText(text);
-        }
-
-        if(player == player5){
-            txtPlayer5.setText(text);
-        }
-
-
+        setPlayerText(player, text);
     }
 
     public void updateFlop(Round round){
@@ -111,7 +122,20 @@ public class Table extends JFrame {
         }
 
         txtCards.setText(cardsText);
+    }
 
+    public void updateTheTurn(Round round){
+        Card c1 = round.getTheTurn();
+        cardsText += "\n\nThe Turn:\n" + c1.toString();
+
+        txtCards.setText(cardsText);
+    }
+
+    public void updateTheRiver(Round round){
+        Card c1 = round.getTheRiver();
+        cardsText += "\n\nThe River:\n" + c1.toString();
+
+        txtCards.setText(cardsText);
     }
 
     public void setUpTable(Round[] rounds, int i){
@@ -120,6 +144,20 @@ public class Table extends JFrame {
 
         cardsText = "";
         txtCards.setText(cardsText);
+    }
+
+    private void setPlayerText(Player player, String text) {
+        if(player == player1){
+            txtPlayer1.setText(text);
+        }else if(player == player2){
+            txtPlayer2.setText(text);
+        }else if(player == player3){
+            txtPlayer3.setText(text);
+        }else if(player == player4){
+            txtPlayer4.setText(text);
+        }else if(player == player5){
+            txtPlayer5.setText(text);
+        }
     }
 
 }

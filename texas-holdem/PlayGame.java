@@ -35,7 +35,6 @@ public class PlayGame {
             activePlayers.add(player);
         }
 
-        JOptionPane.showMessageDialog(null, activePlayers);
 
         for (int i = 0; i < rounds.length; i++) {
 
@@ -45,6 +44,7 @@ public class PlayGame {
                  ) {
                 if(player.getFunds() <= 0 || player.getStatus().equals("out")){
                     player.setStatus("out");
+                    newTable.updatePlayer(player);
                     activePlayers.remove(player);
                 }else{
                     player.setStatus("newTurn");
@@ -53,6 +53,11 @@ public class PlayGame {
                 }
             }
 
+            output+="Before:\n";
+            for (Player player:activePlayers
+            ) {
+                output += player.toString() + "\n";
+            }
 
             if( i != 0){
                 Player temp;
@@ -61,11 +66,20 @@ public class PlayGame {
                 if(small != -1){
                     temp = activePlayers.get(small);
 
-                    activePlayers.remove(rounds[i].getSmallBlind());
-
-                    activePlayers.add(temp);
+                    if(activePlayers.get(0) == temp){
+                        // moving small blind to back of the array
+                        activePlayers.remove(temp);
+                        activePlayers.add(temp);
+                    }
                 }
             }
+
+            output+="\n\nafter\n";
+            for (Player player:activePlayers
+                 ) {
+                output += player.toString() + "\n";
+            }
+
 
 
             boolean bettingOver = false;
@@ -100,6 +114,9 @@ public class PlayGame {
                 }
             }
 
+            output+="\nBlind ind +1 : " + (rounds[i].getBlindIndex() +1) +"\n\nPlayer is: " +activePlayers.get((rounds[i].getBlindIndex() +1)).getName();
+            JOptionPane.showMessageDialog(null, output);
+
 
 
             rounds[i].setCurrentCall(bigBlind);
@@ -110,7 +127,7 @@ public class PlayGame {
 
 
 
-            DealCards(startingPlayers, rounds[i]);
+            DealCards(activePlayers, rounds[i]);
             // each round dealing ends here, players hands change after each round.
 
             //first round of betting.
@@ -118,11 +135,11 @@ public class PlayGame {
             // the big blind then swing back around to small + big blind.
 
 
-            for (int j = (rounds[i].getBlindIndex() + 1); j < startingPlayers.length; j++) {
+            for (int j = (rounds[i].getBlindIndex() + 1); j < activePlayers.size(); j++) {
                 // if player is not out they will take a turn.
-                if(!startingPlayers[j].getStatus().equals("out")) {
+                if(!activePlayers.get(j).getStatus().equals("out")) {
 
-                    PlayerTurn newTurn = new PlayerTurn(startingPlayers[j], rounds[i]);
+                    PlayerTurn newTurn = new PlayerTurn(activePlayers.get(j), rounds[i]);
                     newTurn.setTurnTaken(false);
                     while (!newTurn.getTurnTaken()) {
                         // wait for turn to be taken.
@@ -131,11 +148,11 @@ public class PlayGame {
                     newTable.updatePlayer(startingPlayers[j]);
                 }
             }
-            for (int j = 0; j < rounds[i].getBlindIndex() + 1; j++) {
+            for (int j = 0; j < (rounds[i].getBlindIndex() + 1); j++) {
                 // if player is not out they will take a turn.
-                if(!startingPlayers[j].getStatus().equals("out")) {
+                if(!activePlayers.get(j).getStatus().equals("out")) {
 
-                    PlayerTurn newTurn = new PlayerTurn(startingPlayers[j], rounds[i]);
+                    PlayerTurn newTurn = new PlayerTurn(activePlayers.get(j), rounds[i]);
                     newTurn.setTurnTaken(false);
                     while (!newTurn.getTurnTaken()) {
                         // wait for turn to be taken.
@@ -146,7 +163,7 @@ public class PlayGame {
             }
 
 
-            playersBetting(rounds[i], startingPlayers, newTable);
+            playersBetting(rounds[i], activePlayers, newTable);
 
             // the flop.
 
@@ -158,9 +175,9 @@ public class PlayGame {
 
             // second round of betting.
                 //set players to new turn
-                newPlayerTurns(startingPlayers);
+                newPlayerTurns(activePlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], startingPlayers, newTable);
+                playersBetting(rounds[i], activePlayers, newTable);
 
             // the street or the turn.
             rounds[i].setTheTurn();
@@ -168,9 +185,9 @@ public class PlayGame {
 
             // third round of betting.
                 //set players to new turn
-                newPlayerTurns(startingPlayers);
+                newPlayerTurns(activePlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], startingPlayers, newTable);
+                playersBetting(rounds[i], activePlayers, newTable);
 
 
             // the river.
@@ -179,9 +196,9 @@ public class PlayGame {
 
             //last round of betting.
                 //set players to new turn
-                newPlayerTurns(startingPlayers);
+                newPlayerTurns(activePlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], startingPlayers, newTable);
+                playersBetting(rounds[i], activePlayers, newTable);
 
             // Show Hands:
 
@@ -208,8 +225,8 @@ public class PlayGame {
 
 
 
-    private static void newPlayerTurns(Player[] currPlayers) {
-        for (Player player: currPlayers
+    private static void newPlayerTurns(ArrayList<Player> activePlayers) {
+        for (Player player: activePlayers
              ) {
             if (player.getStatus().equals("playing")){
                 player.setStatus("newTurn");
@@ -217,7 +234,7 @@ public class PlayGame {
         }
     }
 
-    private static void playersBetting(Round round, Player[] currPlayers, Table table) {
+    private static void playersBetting(Round round, ArrayList<Player> activePlayers, Table table) {
         // if all players not "Done" enter new loop until all are done.
         boolean allPlayersDone = false;
         // checks if each player is up to the current bet to continue.
@@ -225,17 +242,17 @@ public class PlayGame {
 
 
         while(!allPlayersDone){
-            for (Player player: currPlayers
+            for (Player player: activePlayers
             ) {
                 if ((player.getCurrentBet() == round.getCurrentCall() && !player.getStatus().equals("newTurn")) || player.getStatus().equals("fold") || player.getStatus().equals("out") || player.getStatus().equals("allin")) {
                     playerDone++;
                 }
             }
 
-            if (playerDone == currPlayers.length){
+            if (playerDone == activePlayers.size()){
                 allPlayersDone = true;
             }else{
-                for (Player player: currPlayers
+                for (Player player: activePlayers
                 ) {
                     // if player is not out they will take a turn.
                     if(player.getStatus().equals("playing") || player.getStatus().equals("newTurn")) {
@@ -254,21 +271,21 @@ public class PlayGame {
         }
     }
 
-    private static void DealCards(Player[] currPlayers, Round round) {
+    private static void DealCards(ArrayList<Player> activePlayers, Round round) {
         Card[] roundCards = round.getCardDeck().getCards();
 
         int j;
         for (j = 0; j < 2; j++) {
-            // for the moment all players are in the game, later will check how many players remain.
-            for (int k = 0; k < currPlayers.length; k++) {
+            // changed to active players as now the array is a list and can vary.
+            for (int k = 0; k < activePlayers.size(); k++) {
                 Card[] temp = {null,null};
-                if (currPlayers[k].getCards()!=null){
-                    temp = currPlayers[k].getCards();
+                if (activePlayers.get(k).getCards()!=null){
+                    temp = activePlayers.get(k).getCards();
                 }
                 temp[j] = roundCards[round.getCardIndex()];
 
                 // Deals each player a card by setting their hand to this.
-                currPlayers[k].setCards(temp);
+                activePlayers.get(k).setCards(temp);
                 round.setCardIndex(round.getCardIndex()+1);
             }
         }

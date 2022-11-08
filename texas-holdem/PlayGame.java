@@ -3,6 +3,7 @@ import People.*;
 import GameRounds.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class PlayGame {
@@ -22,21 +23,29 @@ public class PlayGame {
 
         String output = "";
 
-        Player[] currPlayers = newGame.getPlayers();
+
+
+        Player[] startingPlayers = newGame.getPlayers();
 
         Table newTable = new Table(newGame);
 
+        ArrayList<Player> activePlayers = new ArrayList<Player>();
+        for (Player player:startingPlayers
+             ) {
+            activePlayers.add(player);
+        }
 
-
+        JOptionPane.showMessageDialog(null, activePlayers);
 
         for (int i = 0; i < rounds.length; i++) {
 
-
+            activePlayers.get(1).setStatus("out");
             //check if player has funds to play.
-            for (Player player:currPlayers
+            for (Player player:startingPlayers
                  ) {
-                if(player.getFunds() <= 0){
+                if(player.getFunds() <= 0 || player.getStatus().equals("out")){
                     player.setStatus("out");
+                    activePlayers.remove(player);
                 }else{
                     player.setStatus("newTurn");
                     player.setCurrentBet(0);
@@ -45,11 +54,20 @@ public class PlayGame {
             }
 
 
-            if (i != 0) {
-                // swapping order of players for blinds etc.
-                Player[] temp = {currPlayers[1],currPlayers[2], currPlayers[3], currPlayers[0]};
-                currPlayers = temp;
+            if( i != 0){
+                Player temp;
+                int small = activePlayers.indexOf(rounds[i].getSmallBlind());
+
+                if(small != -1){
+                    temp = activePlayers.get(small);
+
+                    activePlayers.remove(rounds[i].getSmallBlind());
+
+                    activePlayers.add(temp);
+                }
             }
+
+
             boolean bettingOver = false;
 
             // setting blinds:
@@ -57,24 +75,25 @@ public class PlayGame {
             int smallBlind = 25;
 
             // get index for small blind:
-            for (int j = 0; j < currPlayers.length; j++) {
-                if(!currPlayers[j].getStatus().equals("out")){
+            for (int j = 0; j < activePlayers.size(); j++) {
+                if(!activePlayers.get(j).getStatus().equals("out")){
 
-                    currPlayers[j].setCurrentBet(smallBlind);
+                    activePlayers.get(j).setCurrentBet(smallBlind);
                     // remove funds from small blind
-                    currPlayers[j].setFunds(currPlayers[j].getFunds() - smallBlind);
-                    newTable.updatePlayer(currPlayers[j]);
+                    activePlayers.get(j).setFunds(activePlayers.get(j).getFunds() - smallBlind);
+                    newTable.updatePlayer(activePlayers.get(j));
                     rounds[i].setBlindIndex(j);
+                    rounds[i].setSmallBlind(activePlayers.get(j));
                     break;
                 }
             }
             // set big blind:
-            for (int j = rounds[i].getBlindIndex() +1; j < currPlayers.length; j++) {
-                if(!currPlayers[j].getStatus().equals("out")){
-                    currPlayers[j].setCurrentBet(bigBlind);
+            for (int j = rounds[i].getBlindIndex() +1; j < activePlayers.size(); j++) {
+                if(!activePlayers.get(j).getStatus().equals("out")){
+                    activePlayers.get(j).setCurrentBet(bigBlind);
                     // remove funds from blind.
-                    currPlayers[j].setFunds(currPlayers[j].getFunds() - bigBlind);
-                    newTable.updatePlayer(currPlayers[j]);
+                    activePlayers.get(j).setFunds(activePlayers.get(j).getFunds() - bigBlind);
+                    newTable.updatePlayer(activePlayers.get(j));
 
                     rounds[i].setBlindIndex(j);
                     break;
@@ -91,7 +110,7 @@ public class PlayGame {
 
 
 
-            DealCards(currPlayers, rounds[i]);
+            DealCards(startingPlayers, rounds[i]);
             // each round dealing ends here, players hands change after each round.
 
             //first round of betting.
@@ -99,50 +118,35 @@ public class PlayGame {
             // the big blind then swing back around to small + big blind.
 
 
-            for (int j = (rounds[i].getBlindIndex() + 1); j < currPlayers.length; j++) {
+            for (int j = (rounds[i].getBlindIndex() + 1); j < startingPlayers.length; j++) {
                 // if player is not out they will take a turn.
-                if(!currPlayers[j].getStatus().equals("out")) {
+                if(!startingPlayers[j].getStatus().equals("out")) {
 
-                    PlayerTurn newTurn = new PlayerTurn(currPlayers[j], rounds[i]);
+                    PlayerTurn newTurn = new PlayerTurn(startingPlayers[j], rounds[i]);
                     newTurn.setTurnTaken(false);
                     while (!newTurn.getTurnTaken()) {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(currPlayers[j]);
+                    newTable.updatePlayer(startingPlayers[j]);
                 }
             }
             for (int j = 0; j < rounds[i].getBlindIndex() + 1; j++) {
                 // if player is not out they will take a turn.
-                if(!currPlayers[j].getStatus().equals("out")) {
+                if(!startingPlayers[j].getStatus().equals("out")) {
 
-                    PlayerTurn newTurn = new PlayerTurn(currPlayers[j], rounds[i]);
+                    PlayerTurn newTurn = new PlayerTurn(startingPlayers[j], rounds[i]);
                     newTurn.setTurnTaken(false);
                     while (!newTurn.getTurnTaken()) {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(currPlayers[j]);
+                    newTable.updatePlayer(startingPlayers[j]);
                 }
             }
 
 
-            /*for (Player player: currPlayers
-            ) {
-                // if player is not out they will take a turn.
-                if(!player.getStatus().equals("out")) {
-
-                    PlayerTurn newTurn = new PlayerTurn(player, rounds[i]);
-                    newTurn.setTurnTaken(false);
-                    while (!newTurn.getTurnTaken()) {
-                        // wait for turn to be taken.
-                    }
-
-                    newTable.updatePlayer(player);
-                }
-            }*/
-
-            playersBetting(rounds[i], currPlayers, newTable);
+            playersBetting(rounds[i], startingPlayers, newTable);
 
             // the flop.
 
@@ -154,9 +158,9 @@ public class PlayGame {
 
             // second round of betting.
                 //set players to new turn
-                newPlayerTurns(currPlayers);
+                newPlayerTurns(startingPlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], currPlayers, newTable);
+                playersBetting(rounds[i], startingPlayers, newTable);
 
             // the street or the turn.
             rounds[i].setTheTurn();
@@ -164,9 +168,9 @@ public class PlayGame {
 
             // third round of betting.
                 //set players to new turn
-                newPlayerTurns(currPlayers);
+                newPlayerTurns(startingPlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], currPlayers, newTable);
+                playersBetting(rounds[i], startingPlayers, newTable);
 
 
             // the river.
@@ -175,13 +179,13 @@ public class PlayGame {
 
             //last round of betting.
                 //set players to new turn
-                newPlayerTurns(currPlayers);
+                newPlayerTurns(startingPlayers);
                 // set betting again after flop.
-                playersBetting(rounds[i], currPlayers, newTable);
+                playersBetting(rounds[i], startingPlayers, newTable);
 
             // Show Hands:
 
-            for (Player player: currPlayers
+            for (Player player: startingPlayers
                  ) {
                 newTable.showPlayersHands(player);
             }

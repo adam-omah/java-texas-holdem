@@ -11,6 +11,8 @@ public class Round {
 
     private int blindIndex;
 
+    private Player smallBlind;
+
     private Card[] theFlop;
     private Card theTurn;
     private Card theRiver;
@@ -128,5 +130,13 @@ public class Round {
 
     public void setBlindIndex(int blindIndex) {
         this.blindIndex = blindIndex;
+    }
+
+    public Player getSmallBlind() {
+        return smallBlind;
+    }
+
+    public void setSmallBlind(Player smallBlind) {
+        this.smallBlind = smallBlind;
     }
 }

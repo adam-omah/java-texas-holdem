@@ -38,7 +38,6 @@ public class PlayGame {
 
         for (int i = 0; i < rounds.length; i++) {
 
-            activePlayers.get(1).setStatus("out");
             //check if player has funds to play.
             for (Player player:startingPlayers
                  ) {
@@ -114,10 +113,6 @@ public class PlayGame {
                 }
             }
 
-            output+="\nBlind ind +1 : " + (rounds[i].getBlindIndex() +1) +"\n\nPlayer is: " +activePlayers.get((rounds[i].getBlindIndex() +1)).getName();
-            JOptionPane.showMessageDialog(null, output);
-
-
 
             rounds[i].setCurrentCall(bigBlind);
             rounds[i].setPool(bigBlind + smallBlind);
@@ -136,6 +131,11 @@ public class PlayGame {
 
 
             for (int j = (rounds[i].getBlindIndex() + 1); j < activePlayers.size(); j++) {
+                // if the player count is 2 this loop will immediately exit, found this via testing.
+                // however this is good as it ends up with the game behavior that I want.
+                // as now the small blind takes the first call (start of next section).
+
+
                 // if player is not out they will take a turn.
                 if(!activePlayers.get(j).getStatus().equals("out")) {
 
@@ -145,8 +145,10 @@ public class PlayGame {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(startingPlayers[j]);
+                    newTable.updatePlayer(activePlayers.get(j));
+
                 }
+
             }
             for (int j = 0; j < (rounds[i].getBlindIndex() + 1); j++) {
                 // if player is not out they will take a turn.
@@ -158,7 +160,7 @@ public class PlayGame {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(startingPlayers[j]);
+                    newTable.updatePlayer(activePlayers.get(j));
                 }
             }
 

@@ -43,12 +43,12 @@ public class PlayGame {
                  ) {
                 if(player.getFunds() <= 0 || player.getStatus().equals("out")){
                     player.setStatus("out");
-                    newTable.updatePlayer(player);
+                    newTable.updatePlayer(player,rounds[i]);
                     activePlayers.remove(player);
                 }else{
                     player.setStatus("newTurn");
                     player.setCurrentBet(0);
-                    newTable.updatePlayer(player);
+                    newTable.updatePlayer(player,rounds[i]);
                 }
             }
 
@@ -94,7 +94,7 @@ public class PlayGame {
                     activePlayers.get(j).setCurrentBet(smallBlind);
                     // remove funds from small blind
                     activePlayers.get(j).setFunds(activePlayers.get(j).getFunds() - smallBlind);
-                    newTable.updatePlayer(activePlayers.get(j));
+                    newTable.updatePlayer(activePlayers.get(j),rounds[i]);
                     rounds[i].setBlindIndex(j);
                     rounds[i].setSmallBlind(activePlayers.get(j));
                     break;
@@ -106,7 +106,7 @@ public class PlayGame {
                     activePlayers.get(j).setCurrentBet(bigBlind);
                     // remove funds from blind.
                     activePlayers.get(j).setFunds(activePlayers.get(j).getFunds() - bigBlind);
-                    newTable.updatePlayer(activePlayers.get(j));
+                    newTable.updatePlayer(activePlayers.get(j),rounds[i]);
 
                     rounds[i].setBlindIndex(j);
                     break;
@@ -145,7 +145,7 @@ public class PlayGame {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(activePlayers.get(j));
+                    newTable.updatePlayer(activePlayers.get(j),rounds[i]);
 
                 }
 
@@ -160,7 +160,7 @@ public class PlayGame {
                         // wait for turn to be taken.
                     }
 
-                    newTable.updatePlayer(activePlayers.get(j));
+                    newTable.updatePlayer(activePlayers.get(j),rounds[i]);
                 }
             }
 
@@ -264,7 +264,7 @@ public class PlayGame {
                         while (!newTurn.getTurnTaken()) {
                             // wait for turn to be taken.
                         }
-                        table.updatePlayer(player);
+                        table.updatePlayer(player,round);
                     }
                 }
                 playerDone = 0;

@@ -32,7 +32,7 @@ public class Table extends JFrame {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         Player[] players = game.getPlayers();
-
+        Round[] rounds = game.getRounds();
 
 
         for (int i = 0; i < players.length; i++) {
@@ -40,23 +40,23 @@ public class Table extends JFrame {
                 switch (i){
                     case 0:
                         player1 = players[i];
-                        updatePlayer(player1);
+                        updatePlayer(player1,rounds[0]);
                         break;
                     case 1:
                         player2 = players[i];
-                        updatePlayer(player2);
+                        updatePlayer(player2,rounds[0]);
                         break;
                     case 2:
                         player3 = players[i];
-                        updatePlayer(player3);
+                        updatePlayer(player3,rounds[0]);
                         break;
                     case 3:
                         player4 = players[i];
-                        updatePlayer(player4);
+                        updatePlayer(player4,rounds[0]);
                         break;
                     case 4:
                         player5 = players[i];
-                        updatePlayer(player4);
+                        updatePlayer(player4,rounds[0]);
                         break;
                 }
             }
@@ -65,7 +65,7 @@ public class Table extends JFrame {
         setVisible(true);
     }
 
-    public void updatePlayer(Player player){
+    public void updatePlayer(Player player , Round round){
         String text = "";
 
         text += "\n" + player.getName() + " Funds " + player.getFunds() + "\n\n";
@@ -79,6 +79,7 @@ public class Table extends JFrame {
             text += "Current Bet: " + player.getCurrentBet();
         }
 
+        lblPool.setText("Pool: " + round.getPool());
         setPlayerText(player, text);
     }
 
@@ -109,6 +110,7 @@ public class Table extends JFrame {
         }
 
         setPlayerText(player, text);
+
     }
 
     public void updateFlop(Round round){

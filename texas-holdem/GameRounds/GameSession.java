@@ -2,71 +2,99 @@ package GameRounds;
 
 import People.Player;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class GameSession {
-    private Round[] rounds;
-    private Player[] players;
-    private String[] winners;
+    private ArrayList<Round> rounds;
+    private ArrayList<Player> players;
+    private ArrayList<String> roundWinners;
 
-    public GameSession(Player[] players) {
-        Round[] rounds = new Round[4];
-        String[] winners = new String[4];
-        int roundCount =1;
-        int bigBlind = 0;
-        int smallBlind= 3;
+    private Player winner;
+
+
+
+    private int currentRound;
+
+    private Boolean gameOver;
+
+    public GameSession(ArrayList<Player> players) {
         setPlayers(players);
+        ArrayList<Round> gameRounds = new ArrayList<Round>();
 
-        for (int i = 0; i < rounds.length; i++) {
-            if (bigBlind == 4){
-                bigBlind = 0;
-            }
-            if(smallBlind == 4){
-                smallBlind = 0;
-            }
+        // first round always added when new Game session.
+        Round round = new Round(players);
+        gameRounds.add(round);
 
-            Round round = new Round(bigBlind,smallBlind, players);
-            smallBlind++;
-            bigBlind++;
-            roundCount++;
-            rounds[i] = round;
-        }
+        setRounds(gameRounds);
+        setRoundWinners(roundWinners);
+        setGameOver(false);
 
-        setRounds(rounds);
-        setWinners(winners);
+        setCurrentRound(0);
 
     }
 
     @Override
     public String toString() {
-        return "GameSession{" +
-                "rounds=" + Arrays.toString(rounds) +
-                ",\nplayers=" + Arrays.toString(players) +
-                ",\nwinners=" + Arrays.toString(winners) +
-                '}';
+        String out = "GameSession{" +
+                "\nrounds=" + rounds +
+                "\n players=" + players +
+                "\n winners=";
+        if(roundWinners != null){
+            for (String winner: roundWinners
+            ) {
+                out += winner;
+            }
+
+        }
+
+        return  out;
     }
 
-    public Round[] getRounds() {
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public ArrayList<Round> getRounds() {
         return rounds;
     }
 
-    public void setRounds(Round[] rounds) {
+    public void setRounds(ArrayList<Round> rounds) {
         this.rounds = rounds;
     }
 
-    public Player[] getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Player[] players) {
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
-    public String[] getWinners() {
-        return winners;
+    public ArrayList<String> getRoundWinners() {
+        return roundWinners;
     }
 
-    public void setWinners(String[] winners) {
-        this.winners = winners;
+    public void setRoundWinners(ArrayList<String> roundWinners) {
+        this.roundWinners = roundWinners;
     }
 }

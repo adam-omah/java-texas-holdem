@@ -3,7 +3,9 @@ package GameRounds;
 import CardPack.*;
 import People.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Round {
     private int cardIndex;
@@ -21,9 +23,13 @@ public class Round {
 
     private int pool;
 
-    private Player[] players;
+    private ArrayList<Player> players;
 
-    public Round(int bigBlindPos, int littleBlindPos, Player[] players) {
+    private ArrayList<Card> tableCards;
+
+
+
+    public Round( ArrayList<Player> players) {
         setPlayers(players);
         setCardDeck(new Deck());
         setCardIndex(0);
@@ -36,12 +42,18 @@ public class Round {
                 ", theTurn=" + theTurn +
                 ", theRiver=" + theRiver +
                 ", currentCall=" + currentCall +
-                ", players=" + Arrays.toString(players) +
+                ", players="  +
                 '}';
     }
 
 
+    public ArrayList<Card> getTableCards() {
+        return tableCards;
+    }
 
+    public void setTableCards(ArrayList<Card> tableCards) {
+        this.tableCards = tableCards;
+    }
 
     public int getCurrentCall() {
         return currentCall;
@@ -92,6 +104,12 @@ public class Round {
         Card[] flop = {c1,c2,c3};
 
         this.theFlop = flop;
+
+        ArrayList<Card> tableCards = new ArrayList<>();
+        Collections.addAll(tableCards, flop);
+
+        setTableCards(tableCards);
+
     }
 
     public Card getTheTurn() {
@@ -116,11 +134,11 @@ public class Round {
         theRiver = c1;
     }
 
-    public Player[] getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Player[] players) {
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 

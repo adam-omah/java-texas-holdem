@@ -4,6 +4,7 @@ import GameRounds.Round;
 import People.Player;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Table extends JFrame {
     private JLabel lblRoundNo;
@@ -31,32 +32,32 @@ public class Table extends JFrame {
         setSize(700,450);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        Player[] players = game.getPlayers();
-        Round[] rounds = game.getRounds();
+        ArrayList<Player> players = game.getPlayers();
+        ArrayList<Round> rounds = game.getRounds();
 
 
-        for (int i = 0; i < players.length; i++) {
-            if(players[i] != null){
+        for (int i = 0; i < players.size(); i++) {
+            if(players.get(i) != null){
                 switch (i){
                     case 0:
-                        player1 = players[i];
-                        updatePlayer(player1,rounds[0]);
+                        player1 = players.get(i);
+                        updatePlayer(player1, rounds.get(0));
                         break;
                     case 1:
-                        player2 = players[i];
-                        updatePlayer(player2,rounds[0]);
+                        player2 = players.get(i);
+                        updatePlayer(player2, rounds.get(0));
                         break;
                     case 2:
-                        player3 = players[i];
-                        updatePlayer(player3,rounds[0]);
+                        player3 = players.get(i);
+                        updatePlayer(player3, rounds.get(0));
                         break;
                     case 3:
-                        player4 = players[i];
-                        updatePlayer(player4,rounds[0]);
+                        player4 = players.get(i);
+                        updatePlayer(player4, rounds.get(0));
                         break;
                     case 4:
-                        player5 = players[i];
-                        updatePlayer(player4,rounds[0]);
+                        player5 = players.get(i);
+                        updatePlayer(player4, rounds.get(0));
                         break;
                 }
             }
@@ -140,8 +141,8 @@ public class Table extends JFrame {
         txtCards.setText(cardsText);
     }
 
-    public void setUpTable(Round[] rounds, int i){
-        lblPool.setText("Pool: " + rounds[i].getPool());
+    public void setUpTable(ArrayList<Round> rounds, int i){
+        lblPool.setText("Pool: " + rounds.get(i).getPool());
         lblRoundNo.setText("Round " + (i+1));
 
         cardsText = "";

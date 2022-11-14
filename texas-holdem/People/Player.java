@@ -1,7 +1,9 @@
 package People;
 
 import CardPack.Card;
+import GameRounds.Round;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public abstract class Player implements Person {
@@ -19,13 +21,39 @@ public abstract class Player implements Person {
 
     public abstract String getStatus();
 
-
     public abstract Card[] getCards();
+
+    public ArrayList<Card> bestPlayerHand;
 
     public Player(String name, String address, GregorianCalendar dateOfBirth) {
         setName(name);
         setAddress(address);
         setDateOfBirth(dateOfBirth);
+    }
+
+    public ArrayList<Card> getBestPlayerHand() {
+        return bestPlayerHand;
+    }
+
+    public void setBestPlayerHand(Round round) {
+        ArrayList<Card> tableCards = round.getTableCards();
+        ArrayList<Card> bestPlayerHand = new ArrayList<>();
+        // sort which 5 cards the player would use:
+        // is royal flush possible?
+        // is straight flush possible?
+        // is Four of a kind possible?
+        // is Four of a kind possible?
+        // is Four of a kind possible?
+        // is a full house possible?
+        // is a flush possible?
+        // is a straight possible?
+        // is triples possible?
+        // is two pair possible?
+        // is pair possible?
+        // Pick highest cards if not even pairs possible.
+
+
+        this.bestPlayerHand = bestPlayerHand;
     }
 
     @Override

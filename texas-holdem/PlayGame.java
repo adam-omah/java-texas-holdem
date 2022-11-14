@@ -191,13 +191,17 @@ public class PlayGame {
             }
 
             // Check game over! And if Player can continue.
-            if(!isGameOver(newGame,activePlayers)){
+            if(!isGameOver(activePlayers)){
                 //check if player has funds to play.
                 for (Player player:startingPlayers
                 ) {
                     if(player.getFunds() <= 0 || player.getStatus().equals("out")){
                         player.setStatus("out");
                         newTable.updatePlayer(player, rounds.get(currentRound));
+                        if (player.bestPlayerHand != null){
+                            player.bestPlayerHand.clear();
+                        }
+
                         activePlayers.remove(player);
                     }else{
                         player.setStatus("newTurn");
@@ -211,7 +215,7 @@ public class PlayGame {
                 newGame.setCurrentRound(newGame.getCurrentRound() + 1);
             }else{
                 newGame.setGameOver(true);
-                break;
+                // assign over all winner.
             }
 
 
@@ -227,7 +231,7 @@ public class PlayGame {
 
     }
 
-    private static boolean isGameOver(GameSession newGame, ArrayList<Player> activePlayers) {
+    private static boolean isGameOver( ArrayList<Player> activePlayers) {
         boolean result = false;
         int playerCount =0;
         for (Player player: activePlayers
@@ -237,7 +241,7 @@ public class PlayGame {
             }
         }
 
-        if (playerCount ==1){
+        if (playerCount <=1){
             result = true;
         }
 

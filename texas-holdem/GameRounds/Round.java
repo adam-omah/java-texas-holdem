@@ -35,6 +35,12 @@ public class Round {
         setCardIndex(0);
     }
 
+    public Round( ArrayList<Player> players, Deck deck) {
+        setPlayers(players);
+        setCardDeck(deck);
+        setCardIndex(0);
+    }
+
     @Override
     public String toString() {
         return "\nRound{" +
@@ -121,6 +127,7 @@ public class Round {
         Card c1 = cards[this.getCardIndex()];
         this.setCardIndex(this.getCardIndex()+1);
         theTurn = c1;
+        getTableCards().add(c1);
     }
 
     public Card getTheRiver() {
@@ -132,6 +139,7 @@ public class Round {
         Card c1 = cards[this.getCardIndex()];
         this.setCardIndex(this.getCardIndex()+1);
         theRiver = c1;
+        getTableCards().add(c1);
     }
 
     public ArrayList<Player> getPlayers() {

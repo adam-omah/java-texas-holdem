@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/People/TestPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardPack/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardPack/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameRounds/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/GameRounds/Round.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/CardPack/deck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/GameRounds/Round.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/GameRounds/Round.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/PlayGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/PlayGame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +78,8 @@
       <workItem from="1667939070189" duration="3660000" />
       <workItem from="1668157893373" duration="6871000" />
       <workItem from="1668456138064" duration="2313000" />
+      <workItem from="1668526459836" duration="3755000" />
+      <workItem from="1668537041170" duration="6206000" />
     </task>
     <servers />
   </component>

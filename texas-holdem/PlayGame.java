@@ -184,6 +184,12 @@ public class PlayGame {
                 }
 
                 // check round winner!!
+                for (Player player:activePlayers
+                     ) {
+                    if(player.getStatus().equals("playing") || player.getStatus().equals("allin")){
+                        player.setBestPlayerHand(rounds.get(currentRound));
+                    }
+                }
 
 
             }else{

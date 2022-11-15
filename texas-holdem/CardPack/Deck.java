@@ -11,6 +11,11 @@ public class Deck {
         usedCards = new Card[52];
     }
 
+    public Deck (Card[] cards){
+        this.cards = cards;
+        usedCards = new Card[52];
+    }
+
     private Card[] newDeck() {
         Card[] newDeck = new Card[52];
         int current = 0;

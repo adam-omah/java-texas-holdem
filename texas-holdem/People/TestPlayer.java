@@ -24,10 +24,10 @@ public class TestPlayer {
         players.add(p1);
 
         // Cards 2 Tests for Straight Flush with Ace start.
-        Card[] cards2 = {new Card('H',2), new Card('H',3),new Card('H',4),new Card('H',5), new Card('S',7),new Card('S',10)};
+        Card[] cards2 = {new Card('H',2), new Card('H',3),new Card('H',4),new Card('H',5), new Card('S',2),new Card('S',4)};
         Deck d2 = new Deck(cards2);
 
-        Card[] hand2 = {new Card('H',9), new Card('H',14)};
+        Card[] hand2 = {new Card('H',8), new Card('H',14)};
         p2.setCards(hand2);
         players.add(p2);
 

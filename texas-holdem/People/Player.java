@@ -31,6 +31,27 @@ public abstract class Player implements Person {
 
     public int handValue;
 
+    // high card and Kicker, introduced to determine winner within categories.
+    // this is the poker terminologoy for these card values too.
+    public int highCard;
+    public int kicker;
+
+    public int getHighCard() {
+        return highCard;
+    }
+
+    public void setHighCard(int highCard) {
+        this.highCard = highCard;
+    }
+
+    public int getKicker() {
+        return kicker;
+    }
+
+    public void setKicker(int kicker) {
+        this.kicker = kicker;
+    }
+
     public Player(String name, String address, GregorianCalendar dateOfBirth) {
         setName(name);
         setAddress(address);
@@ -53,6 +74,8 @@ public abstract class Player implements Person {
         int clubSuit = 0;
         int spadeSuit = 0;
         int diamondSuit =0;
+        int twos = 0,threes =0,fours=0, fives = 0, sixes =0, sevens =0, eights =0,
+                nines =0, tens = 0, jacks=0,queens = 0, kings = 0, aces =0;
         boolean flushPossible = false;
         char flushSuite = 'J';
         int tempValue = 0;
@@ -224,6 +247,164 @@ public abstract class Player implements Person {
             }
 
         // is Four of a kind possible? Hand Value 8--!
+        int fourOfAKind = 0 , trips1 =0, trips2 =0, pair1 =0, pair2 = 0, pair3 =0;
+
+        for (Card card:
+             possibleCards) {
+            switch (card.getValue()) {
+                case 2 -> {
+                    twos++;
+                    if (twos == 3 && trips1 == 0) {
+                        trips1 = 2;
+                    }else if(twos == 3){
+                        trips2 = 2;
+                    }
+                    if (twos == 4) {
+                        fourOfAKind = 2;
+                    }
+                }
+                case 3 -> {
+                    threes++;
+                    if (threes == 3 && trips1 == 0) {
+                        trips1 = 3;
+                    }else if(threes == 3){
+                        trips2 = 3;
+                    }
+                    if (threes == 4) {
+                        fourOfAKind = 3;
+                    }
+                }
+                case 4 -> {
+                    fours++;
+                    if (fours == 3 && trips1 == 0) {
+                        trips1 = 4;
+                    }else if(fours == 3){
+                        trips2 = 4;
+                    }
+                    if (fours == 4) {
+                        fourOfAKind = 4;
+                    }
+                }
+                case 5 -> {
+                    fives++;
+                    if (fives == 3 && trips1 == 0) {
+                        trips1 = 5;
+                    }else if(fives == 3){
+                        trips2 = 5;
+                    }
+                    if (fives == 4) {
+                        fourOfAKind = 5;
+                    }
+                }
+                case 6 -> {
+                    sixes++;
+                    if (sixes == 3 && trips1 == 0) {
+                        trips1 = 6;
+                    }else if(sixes == 3){
+                        trips2 = 6;
+                    }
+                    if (sixes == 4) {
+                        fourOfAKind = 6;
+                    }
+                }
+                case 7 -> {
+                    sevens++;
+                    if (sevens == 3 && trips1 == 0) {
+                        trips1 = 7;
+                    }else if(sevens == 3){
+                        trips2 = 7;
+                    }
+                    if (sevens == 4) {
+                        fourOfAKind = 7;
+                    }
+                }
+                case 8 -> {
+                    eights++;
+                    if (eights == 3 && trips1 == 0) {
+                        trips1 = 8;
+                    }else if(eights == 3){
+                        trips2 = 8;
+                    }
+                    if (eights == 4) {
+                        fourOfAKind = 8;
+                    }
+                }
+                case 9 -> {
+                    nines++;
+                    if (nines == 3 && trips1 == 0) {
+                        trips1 = 9;
+                    }else if(nines == 3){
+                        trips2 = 9;
+                    }
+                    if (nines == 4) {
+                        fourOfAKind = 9;
+                    }
+                }
+                case 10 -> {
+                    tens++;
+                    if (tens == 3 && trips1 == 0) {
+                        trips1 = 10;
+                    }else if(tens == 3){
+                        trips2 = 10;
+                    }
+                    if (tens == 4) {
+                        fourOfAKind = 10;
+                    }
+                }
+                case 11 -> {
+                    jacks++;
+                    if (jacks == 3 && trips1 == 0) {
+                        trips1 = 11;
+                    }else if(jacks == 3){
+                        trips2 = 11;
+                    }
+                    if (jacks == 4) {
+                        fourOfAKind = 11;
+                    }
+                }
+                case 12 -> {
+                    queens++;
+                    if (queens == 3 && trips1 == 0) {
+                        trips1 = 12;
+                    }else if(queens == 3){
+                        trips2 = 12;
+                    }
+                    if (queens == 4) {
+                        fourOfAKind = 12;
+                    }
+                }
+                case 13 -> {
+                    kings++;
+                    if (kings == 3 && trips1 == 0) {
+                        trips1 = 13;
+                    }else if(kings == 3){
+                        trips2 = 13;
+                    }
+                    if (kings == 4) {
+                        fourOfAKind = 13;
+                    }
+                }
+                case 14 -> {
+                    aces++;
+                    if (aces == 3 && trips1 == 0) {
+                        trips1 = 14;
+                    }else if(aces == 3){
+                        trips2 = 14;
+                    }
+                    if (aces == 4) {
+                        fourOfAKind = 14;
+                    }
+                }
+            }
+        }
+
+        if(fourOfAKind != 0){
+            for (Card card: possibleCards
+                 ) {
+
+            }
+        }
+
         // is a full house possible? Hand Value 7--!
         // is a flush possible? Hand Value 6--!
         // is a straight possible? Hand Value 5--!
@@ -244,14 +425,6 @@ public abstract class Player implements Person {
                 }
             }
 
-            output += "\nTemps:\n";
-            for (Card card: temp
-            ) {
-                output += card.getValue() + "\n";
-            }
-
-
-            JOptionPane.showMessageDialog(null, output);
 
             // check if temp in sequence of 5?
             // high straight:

@@ -13,6 +13,7 @@ public class TestPlayer {
         Pro p1 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
         Pro p2 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
         Pro p3 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
+        Pro p4 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
 
         ArrayList<Player> players = new ArrayList<>();
         // testing deck for different cards.
@@ -40,6 +41,14 @@ public class TestPlayer {
         p3.setCards(hand3);
         players.add(p3);
 
+        // Cards 4 Tests for Full House
+        Card[] cards4 = {new Card('H',2), new Card('C',2),new Card('H',4),new Card('C',4), new Card('S',6),new Card('S',4)};
+        Deck d4 = new Deck(cards4);
+
+        Card[] hand4 = {new Card('D',2), new Card('S',4)};
+        p4.setCards(hand4);
+        players.add(p4);
+
         // Round 1 Cards (royal flush)
         Round round1 = new Round(players, d1);
         round1.setTheFlop();
@@ -58,16 +67,28 @@ public class TestPlayer {
         round3.setTheTurn();
         round3.setTheRiver();
 
+        // Round 3 Cards (4 of a kind)
+        Round round4 = new Round(players, d4);
+        round4.setTheFlop();
+        round4.setTheTurn();
+        round4.setTheRiver();
+
         players.get(0).setBestPlayerHand(round1);
 
         players.get(1).setBestPlayerHand(round2);
 
         players.get(2).setBestPlayerHand(round3);
 
+        players.get(3).setBestPlayerHand(round4);
+
         out += "Hand1 Player1 (Royal Flush)\n\nHand Value: " +players.get(0).getHandValue() + "\n\nBest Hand: \n" + players.get(0).getBestPlayerHand();
 
         out += "\n\nHand2 Player2 (Straight Flush Ace start)\n\nHand Value: " +players.get(1).getHandValue() + "\n\nBest Hand: \n" + players.get(1).getBestPlayerHand();
+
         out += "\n\nHand3 Player3 (4 Of A Kind)\n\nHand Value: " +players.get(2).getHandValue() + "\n\nBest Hand: \n" + players.get(2).getBestPlayerHand();
+
+        out += "\n\nHand4 Player4 (Full House)\n\nHand Value: " +players.get(3).getHandValue() + "\n\nBest Hand: \n" + players.get(3).getBestPlayerHand();
+
 
         JOptionPane.showMessageDialog(null, out);
 

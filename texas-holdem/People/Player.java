@@ -206,12 +206,8 @@ public abstract class Player implements Person {
                         temp2.sort(Comparator.comparing(Card::getValue));
 
                         tempValue = 900;
-                        for (Card card:
-                             temp2) {
-                                tempValue += card.getValue();
-                        }
-                        this.setHandValue(tempValue);
-                        this.bestPlayerHand = temp2;
+                        this.setHighCard(temp.get(i).getValue());
+                        setHandTempValue(temp2, tempValue);
                         return;
                     }
 
@@ -234,6 +230,7 @@ public abstract class Player implements Person {
                     temp2.sort(Comparator.comparing(Card::getValue));
 
                     tempValue = 915;
+                    this.setHighCard(5);
                     this.setHandValue(tempValue);
                     this.bestPlayerHand = temp2;
                     return;
@@ -249,6 +246,16 @@ public abstract class Player implements Person {
             switch (card.getValue()) {
                 case 2 -> {
                     twos++;
+                    // pairs
+                    if(twos == 2 && pair1 == 0){
+                        pair1 = 2;
+                    } else if (twos == 2 && pair2 == 0) {
+                        pair2 = 2;
+                    } else if (twos == 2) {
+                        pair3 = 2;
+                    }
+                    
+                    // triples.
                     if (twos == 3 && trips1 == 0) {
                         trips1 = 2;
                     }else if(twos == 3){
@@ -260,6 +267,18 @@ public abstract class Player implements Person {
                 }
                 case 3 -> {
                     threes++;
+
+                    // pairs
+                    if(threes == 2 && pair1 == 0){
+                        pair1 = 3;
+                    } else if (threes == 2 && pair2 == 0) {
+                        pair2 = 3;
+                    } else if (threes == 2) {
+                        pair3 = 3;
+                    }
+
+                    // triples.
+                    
                     if (threes == 3 && trips1 == 0) {
                         trips1 = 3;
                     }else if(threes == 3){
@@ -271,6 +290,17 @@ public abstract class Player implements Person {
                 }
                 case 4 -> {
                     fours++;
+
+                    // pairs
+                    if(fours == 2 && pair1 == 0){
+                        pair1 = 4;
+                    } else if (fours == 2 && pair2 == 0) {
+                        pair2 = 4;
+                    } else if (fours == 2) {
+                        pair3 = 4;
+                    }
+
+                    // triples.
                     if (fours == 3 && trips1 == 0) {
                         trips1 = 4;
                     }else if(fours == 3){
@@ -282,6 +312,16 @@ public abstract class Player implements Person {
                 }
                 case 5 -> {
                     fives++;
+                    // pairs
+                    if(fives == 2 && pair1 == 0){
+                        pair1 = 5;
+                    } else if (fives == 2 && pair2 == 0) {
+                        pair2 = 5;
+                    } else if (fives == 2) {
+                        pair3 = 5;
+                    }
+
+                    // triples.
                     if (fives == 3 && trips1 == 0) {
                         trips1 = 5;
                     }else if(fives == 3){
@@ -293,6 +333,16 @@ public abstract class Player implements Person {
                 }
                 case 6 -> {
                     sixes++;
+                    // pairs
+                    if(sixes == 2 && pair1 == 0){
+                        pair1 = 6;
+                    } else if (sixes == 2 && pair2 == 0) {
+                        pair2 = 6;
+                    } else if (sixes == 2) {
+                        pair3 = 6;
+                    }
+
+                    // triples.
                     if (sixes == 3 && trips1 == 0) {
                         trips1 = 6;
                     }else if(sixes == 3){
@@ -304,6 +354,16 @@ public abstract class Player implements Person {
                 }
                 case 7 -> {
                     sevens++;
+                    // pairs
+                    if(sevens == 2 && pair1 == 0){
+                        pair1 = 7;
+                    } else if (sevens == 2 && pair2 == 0) {
+                        pair2 = 7;
+                    } else if (sevens == 2) {
+                        pair3 = 7;
+                    }
+
+                    // triples.
                     if (sevens == 3 && trips1 == 0) {
                         trips1 = 7;
                     }else if(sevens == 3){
@@ -315,6 +375,16 @@ public abstract class Player implements Person {
                 }
                 case 8 -> {
                     eights++;
+                    // pairs
+                    if(eights == 2 && pair1 == 0){
+                        pair1 = 8;
+                    } else if (eights == 2 && pair2 == 0) {
+                        pair2 = 8;
+                    } else if (eights == 2) {
+                        pair3 = 8;
+                    }
+
+                    // triples.
                     if (eights == 3 && trips1 == 0) {
                         trips1 = 8;
                     }else if(eights == 3){
@@ -326,6 +396,16 @@ public abstract class Player implements Person {
                 }
                 case 9 -> {
                     nines++;
+                    // pairs
+                    if(nines == 2 && pair1 == 0){
+                        pair1 = 9;
+                    } else if (nines == 2 && pair2 == 0) {
+                        pair2 = 9;
+                    } else if (nines == 2) {
+                        pair3 = 9;
+                    }
+
+                    // triples.
                     if (nines == 3 && trips1 == 0) {
                         trips1 = 9;
                     }else if(nines == 3){
@@ -337,6 +417,16 @@ public abstract class Player implements Person {
                 }
                 case 10 -> {
                     tens++;
+                    // pairs
+                    if(tens == 2 && pair1 == 0){
+                        pair1 = 10;
+                    } else if (tens == 2 && pair2 == 0) {
+                        pair2 = 10;
+                    } else if (tens == 2) {
+                        pair3 = 10;
+                    }
+
+                    // triples.
                     if (tens == 3 && trips1 == 0) {
                         trips1 = 10;
                     }else if(tens == 3){
@@ -348,6 +438,16 @@ public abstract class Player implements Person {
                 }
                 case 11 -> {
                     jacks++;
+                    // pairs
+                    if(jacks == 2 && pair1 == 0){
+                        pair1 = 11;
+                    } else if (jacks == 2 && pair2 == 0) {
+                        pair2 = 11;
+                    } else if (jacks == 2) {
+                        pair3 = 11;
+                    }
+
+                    // triples.
                     if (jacks == 3 && trips1 == 0) {
                         trips1 = 11;
                     }else if(jacks == 3){
@@ -359,6 +459,16 @@ public abstract class Player implements Person {
                 }
                 case 12 -> {
                     queens++;
+                    // pairs
+                    if(queens == 2 && pair1 == 0){
+                        pair1 = 12;
+                    } else if (queens == 2 && pair2 == 0) {
+                        pair2 = 12;
+                    } else if (queens == 2) {
+                        pair3 = 12;
+                    }
+
+                    // triples.
                     if (queens == 3 && trips1 == 0) {
                         trips1 = 12;
                     }else if(queens == 3){
@@ -370,6 +480,16 @@ public abstract class Player implements Person {
                 }
                 case 13 -> {
                     kings++;
+                    // pairs
+                    if(kings == 2 && pair1 == 0){
+                        pair1 = 13;
+                    } else if (kings == 2 && pair2 == 0) {
+                        pair2 = 13;
+                    } else if (kings == 2) {
+                        pair3 = 13;
+                    }
+
+                    // triples.
                     if (kings == 3 && trips1 == 0) {
                         trips1 = 13;
                     }else if(kings == 3){
@@ -381,6 +501,16 @@ public abstract class Player implements Person {
                 }
                 case 14 -> {
                     aces++;
+                    // pairs
+                    if(aces == 2 && pair1 == 0){
+                        pair1 = 14;
+                    } else if (aces == 2 && pair2 == 0) {
+                        pair2 = 14;
+                    } else if (aces == 2) {
+                        pair3 = 14;
+                    }
+
+                    // triples.
                     if (aces == 3 && trips1 == 0) {
                         trips1 = 14;
                     }else if(aces == 3){
@@ -422,28 +552,63 @@ public abstract class Player implements Person {
             // Set Best Hand + Hand Value.
 
             // Testing for if temp cards are in order.
-            output += "\nTemps:\n";
-            for (Card card: temp
-            ) {
-                output += card.getValue() + "\n";
-            }
-
-
-            JOptionPane.showMessageDialog(null, output);
+//            output += "\nTemps:\n";
+//            for (Card card: temp
+//            ) {
+//                output += card.getValue() + "\n";
+//            }
+//
+//
+//            JOptionPane.showMessageDialog(null, output);
 
             tempValue = 800;
-            for (Card card:
-                    temp) {
-                tempValue += card.getValue();
-            }
-            this.setHandValue(tempValue);
-            this.bestPlayerHand = temp;
+            setHandTempValue(temp, tempValue);
             return;
-
-
         }
 
         // is a full house possible? Hand Value 7--!
+        int highTriple = 0;
+        int highPair = 0;
+        if(trips1 != 0 && trips2 != 0){
+            if(trips1 > trips2){
+                highTriple = trips1;
+                highPair = trips2;
+            }else {
+                highTriple = trips2;
+                highPair = trips1;
+            }
+        } else if (trips1 != 0 && pair2 !=0) {
+            if (pair1 == trips1){
+                highTriple = trips1;
+                if (pair3 !=0){
+                    // intellij suggested using math max here (was an if - else statement before).
+                    highPair = Math.max(pair2, pair3);
+                }else {
+                    highPair = pair2;
+                }
+            }
+        }
+        // if the above was entered high pair is always chosen. so only need to test if high trips is !=0
+        if (highTriple != 0){
+            this.setHighCard(highTriple);
+            this.setKicker(highPair);
+            int pairCount = 0;
+            for (Card card: possibleCards){
+                if (card.getValue() == highTriple){
+                    temp.add(card);
+                }
+                if (card.getValue() == highPair && pairCount < 2){
+                    temp.add(card);
+                    pairCount++;
+                }
+            }
+
+            tempValue = 700;
+            setHandTempValue(temp, tempValue);
+            return;
+        }
+
+
         // is a flush possible? Hand Value 6--!
         // is a straight possible? Hand Value 5--!
             // check if temp in sequence of 5?
@@ -485,12 +650,7 @@ public abstract class Player implements Person {
                     temp2.sort(Comparator.comparing(Card::getValue));
 
                     tempValue = 500;
-                    for (Card card:
-                            temp2) {
-                        tempValue += card.getValue();
-                    }
-                    this.setHandValue(tempValue);
-                    this.bestPlayerHand = temp2;
+                    setHandTempValue(temp2, tempValue);
                     return;
                 }
 
@@ -519,6 +679,11 @@ public abstract class Player implements Person {
             }
 
         // is triples possible? Hand Value 4--!
+        if(trips1 != 0){
+            
+        }
+        
+        
         // is two pair possible? Hand Value 3--!
         // is pair possible? Hand Value 2--!
         // Pick highest cards if not even pairs possible. Hand Value 1--!
@@ -530,6 +695,15 @@ public abstract class Player implements Person {
         }
         possibleCards.clear();
 
+    }
+
+    private void setHandTempValue(ArrayList<Card> temp, int tempValue) {
+        for (Card card:
+                temp) {
+            tempValue += card.getValue();
+        }
+        this.setHandValue(tempValue);
+        this.bestPlayerHand = temp;
     }
 
     public int getHandValue() {

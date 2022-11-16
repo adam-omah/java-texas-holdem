@@ -81,6 +81,9 @@ public abstract class Player implements Person {
         int tempValue = 0;
         Card[] cards = this.getCards();
 
+        this.setKicker(0);
+        this.setHighCard(0);
+
         tableCards = round.getTableCards();
         possibleCards.addAll(tableCards);
         for (Card card: cards
@@ -180,15 +183,7 @@ public abstract class Player implements Person {
                         temp.add(card);
                     }
                 }
-// Testing for if temp cards are in order.
-//                output += "\nTemps:\n";
-//                for (Card card: temp
-//                ) {
-//                    output += card.getValue() + "\n";
-//                }
-//
-//
-//                JOptionPane.showMessageDialog(null, output);
+
 
                 // check if temp in sequence of 5?
                 // high straight:
@@ -212,7 +207,7 @@ public abstract class Player implements Person {
 
                         tempValue = 900;
                         for (Card card:
-                             temp) {
+                             temp2) {
                                 tempValue += card.getValue();
                         }
                         this.setHandValue(tempValue);
@@ -399,10 +394,53 @@ public abstract class Player implements Person {
         }
 
         if(fourOfAKind != 0){
+            setHighCard(fourOfAKind);
+            temp.clear();
+
             for (Card card: possibleCards
                  ) {
-
+                if(card.getValue() == fourOfAKind){
+                    temp.add(card);
+                }else{
+                    // if not the four of a kind check kicker to be added. (highest will be added after).
+                    if(this.getKicker() == 0){
+                        setKicker(card.getValue());
+                    }else if(this.getKicker() < card.getValue()){
+                        setKicker(card.getValue());
+                    }
+                }
             }
+
+            // add kicker to temp.
+            for (Card card: possibleCards){
+                if(card.getValue() == this.getKicker()){
+                    temp.add(card);
+                    break;
+                }
+            }
+
+            // Set Best Hand + Hand Value.
+
+            // Testing for if temp cards are in order.
+            output += "\nTemps:\n";
+            for (Card card: temp
+            ) {
+                output += card.getValue() + "\n";
+            }
+
+
+            JOptionPane.showMessageDialog(null, output);
+
+            tempValue = 800;
+            for (Card card:
+                    temp) {
+                tempValue += card.getValue();
+            }
+            this.setHandValue(tempValue);
+            this.bestPlayerHand = temp;
+            return;
+
+
         }
 
         // is a full house possible? Hand Value 7--!
@@ -448,7 +486,7 @@ public abstract class Player implements Person {
 
                     tempValue = 500;
                     for (Card card:
-                            temp) {
+                            temp2) {
                         tempValue += card.getValue();
                     }
                     this.setHandValue(tempValue);
@@ -485,7 +523,7 @@ public abstract class Player implements Person {
         // is pair possible? Hand Value 2--!
         // Pick highest cards if not even pairs possible. Hand Value 1--!
 
-        if(temp != null){
+        if(temp != null && temp.size() == 5){
             this.bestPlayerHand = temp;
         }else{
             this.bestPlayerHand = round.getTableCards();

@@ -4,6 +4,9 @@
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/TestPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/TestPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +76,7 @@
       <workItem from="1668526459836" duration="3755000" />
       <workItem from="1668537041170" duration="6654000" />
       <workItem from="1668594608633" duration="2521000" />
-      <workItem from="1668613091103" duration="5262000" />
+      <workItem from="1668613091103" duration="6584000" />
     </task>
     <servers />
   </component>

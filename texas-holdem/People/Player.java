@@ -166,10 +166,11 @@ public abstract class Player implements Person {
 
             // check if temp in sequence of 5?
             for (int i = (temp.size()-6); i > 0; i--) {
-                if(temp.get(i+4).getValue() == (temp.get(i+3).getValue()+1)
+                if((temp.get(i+4).getValue() == (temp.get(i+3).getValue()+1)
                         && temp.get(i+3).getValue() == (temp.get(i+2).getValue()+1)
                         && temp.get(i+2).getValue() == (temp.get(i+1).getValue()+1)
-                        && temp.get(i+1).getValue() == (temp.get(i).getValue()+1)){
+                        && temp.get(i+1).getValue() == (temp.get(i).getValue()+1))
+                        ){
                     ArrayList<Card> temp2 = new ArrayList<>();
                     temp2.add(temp.get(i+4));
                     temp2.add(temp.get(i+3));
@@ -182,16 +183,43 @@ public abstract class Player implements Person {
                     tempValue = 900;
                     for (Card card:
                          temp) {
-                        tempValue += card.getValue();
+                            tempValue += card.getValue();
+                    }
+                    this.setHandValue(tempValue);
+                    this.bestPlayerHand = temp2;
+                    return;
+                }else if(temp.get(i).getValue() == 2
+                        && temp.get(i+1).getValue() == 3
+                        && temp.get(i+2).getValue() == 4
+                        && temp.get(i+2).getValue() == 5
+                        && temp.get(temp.size() -1).getValue() == 14
+                ){
+                    // This section is testing if Straight with Ace at start is possible.
+                    ArrayList<Card> temp2 = new ArrayList<>();
+                    temp2.add(temp.get(temp.size() -1));
+                    temp2.add(temp.get(i+3));
+                    temp2.add(temp.get(i+2));
+                    temp2.add(temp.get(i+1));
+                    temp2.add(temp.get(i));
+
+                    temp2.sort(Comparator.comparing(Card::getValue));
+
+                    tempValue = 900;
+                    for (Card card:
+                            temp) {
+                        // if straight starts with a 1
+                        if(card.getValue() == 14){
+                            tempValue += 1;
+                        }else{
+                            tempValue += card.getValue();
+                        }
+
                     }
                     this.setHandValue(tempValue);
                     this.bestPlayerHand = temp2;
                     return;
                 }
             }
-
-
-
         }
 
         // is Four of a kind possible? Hand Value 8--!
@@ -200,11 +228,30 @@ public abstract class Player implements Person {
         // is a straight possible? Hand Value 5--!
         // check if temp in sequence of 5?
         //commented out for testing of straight flush.
+
+//        //check each card for sequence.
+//        // make temp and remove duplicates.
+//        for (int i = 0; i < possibleCards.size(); i++) {
+//            int tempInd = 0;
+//            if(i == 0){
+//                temp.add(possibleCards.get(i));
+//            }else {
+//                if (temp.get(tempInd).getValue() == possibleCards.get(i).getValue()){
+//
+//                }else{
+//                    temp.add(possibleCards.get(i));
+//                    tempInd++;
+//                }
+//            }
+//        }
+//
+//        // check if temp in sequence of 5?
 //        for (int i = (temp.size()-6); i > 0; i--) {
-//            if(temp.get(i+4).getValue() == (temp.get(i+3).getValue()+1)
+//            if((temp.get(i+4).getValue() == (temp.get(i+3).getValue()+1)
 //                    && temp.get(i+3).getValue() == (temp.get(i+2).getValue()+1)
 //                    && temp.get(i+2).getValue() == (temp.get(i+1).getValue()+1)
-//                    && temp.get(i+1).getValue() == (temp.get(i).getValue()+1)){
+//                    && temp.get(i+1).getValue() == (temp.get(i).getValue()+1))
+//            ){
 //                ArrayList<Card> temp2 = new ArrayList<>();
 //                temp2.add(temp.get(i+4));
 //                temp2.add(temp.get(i+3));
@@ -214,10 +261,40 @@ public abstract class Player implements Person {
 //
 //                temp2.sort(Comparator.comparing(Card::getValue));
 //
-//                tempValue = 900;
+//                tempValue = 500;
 //                for (Card card:
 //                        temp) {
 //                    tempValue += card.getValue();
+//                }
+//                this.setHandValue(tempValue);
+//                this.bestPlayerHand = temp2;
+//                return;
+//            }else if(temp.get(i).getValue() == 2
+//                    && temp.get(i+1).getValue() == 3
+//                    && temp.get(i+2).getValue() == 4
+//                    && temp.get(i+2).getValue() == 5
+//                    && temp.get(temp.size() -1).getValue() == 14
+//            ){
+//                // This section is testing if Straight with Ace at start is possible.
+//                ArrayList<Card> temp2 = new ArrayList<>();
+//                temp2.add(temp.get(temp.size() -1));
+//                temp2.add(temp.get(i+3));
+//                temp2.add(temp.get(i+2));
+//                temp2.add(temp.get(i+1));
+//                temp2.add(temp.get(i));
+//
+//                temp2.sort(Comparator.comparing(Card::getValue));
+//
+//                tempValue = 500;
+//                for (Card card:
+//                        temp) {
+//                    // if straight starts with a 1
+//                    if(card.getValue() == 14){
+//                        tempValue += 1;
+//                    }else{
+//                        tempValue += card.getValue();
+//                    }
+//
 //                }
 //                this.setHandValue(tempValue);
 //                this.bestPlayerHand = temp2;

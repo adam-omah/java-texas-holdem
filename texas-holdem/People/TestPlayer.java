@@ -119,14 +119,14 @@ public class TestPlayer {
         
         // testing deck for different cards.
         // Cards 6 Tests for Straight Not Low not flushed
-        Card[] cards6 = {new Card('S',10), new Card('D',11),new Card('H',12),new Card('D',13), new Card('S',7),new Card('S',10)};
+        Card[] cards6 = {new Card('S',10), new Card('D',11),new Card('H',12),new Card('D',13), new Card('S',10),new Card('S',10)};
         Deck d6 = new Deck(cards6);
 
         Card[] hand6 = {new Card('H',9), new Card('S',14)};
         p6.setCards(hand6);
         players2.add(p6);
 
-        // Cards 7 Tests for Straight Flush with Ace start.
+        // Cards 7 Tests for triples
         Card[] cards7 = {new Card('H',2), new Card('S',3),new Card('H',4),new Card('D',12), new Card('S',2),new Card('S',4)};
         Deck d7 = new Deck(cards7);
 
@@ -143,18 +143,18 @@ public class TestPlayer {
         players2.add(p8);
 
         // Cards 9 Tests for Full House
-        Card[] cards9 = {new Card('H',2), new Card('C',2),new Card('H',4),new Card('C',4), new Card('S',6),new Card('S',4)};
+        Card[] cards9 = {new Card('H',2), new Card('C',9),new Card('H',4),new Card('C',6), new Card('S',8),new Card('S',4)};
         Deck d9 = new Deck(cards9);
 
-        Card[] hand9 = {new Card('D',2), new Card('S',4)};
+        Card[] hand9 = {new Card('D',10), new Card('S',4)};
         p9.setCards(hand9);
         players2.add(p9);
 
         // Cards 10 Tests for Flush
-        Card[] cards10 = {new Card('H',2), new Card('H',5),new Card('H',10),new Card('H',7), new Card('S',6),new Card('S',4)};
+        Card[] cards10 = {new Card('H',2), new Card('D',5),new Card('S',10),new Card('H',7), new Card('S',6),new Card('S',4)};
         Deck d10 = new Deck(cards10);
 
-        Card[] hand10 = {new Card('H',3), new Card('H',9)};
+        Card[] hand10 = {new Card('H',3), new Card('D',9)};
         p10.setCards(hand10);
         players2.add(p10);
 
@@ -195,8 +195,8 @@ public class TestPlayer {
         out2 += "Hand6 Player6 (Normal Straight)\n\nHand Value: " +players2.get(0).getHandValue() + "\n\nBest Hand: \n" + players2.get(0).getBestPlayerHand();
         out2 += "\n\nHand7 Player7 (Triples no doubles.)\n\nHand Value: " +players2.get(1).getHandValue() + "\n\nBest Hand: \n" + players2.get(1).getBestPlayerHand();
         out2 += "\n\nHand8 Player8 (Two pair / 3 possible)\n\nHand Value: " +players2.get(2).getHandValue() + "\n\nBest Hand: \n" + players2.get(2).getBestPlayerHand();
-        out2 += "\n\nHand9 Player9 (Full House)\n\nHand Value: " +players2.get(3).getHandValue() + "\n\nBest Hand: \n" + players2.get(3).getBestPlayerHand();
-        out2 += "\n\nHand10 Player10 (Full House)\n\nHand Value: " +players2.get(4).getHandValue() + "\n\nBest Hand: \n" + players2.get(4).getBestPlayerHand();
+        out2 += "\n\nHand9 Player9 (Single Pair)\n\nHand Value: " +players2.get(3).getHandValue() + "\n\nBest Hand: \n" + players2.get(3).getBestPlayerHand();
+        out2 += "\n\nHand10 Player10 (No pair possible, high cards.)\n\nHand Value: " +players2.get(4).getHandValue() + "\n\nBest Hand: \n" + players2.get(4).getBestPlayerHand();
 
 
 

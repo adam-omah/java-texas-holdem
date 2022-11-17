@@ -191,6 +191,15 @@ public class PlayGame {
                     }
                 }
 
+                ArrayList<Player> winners =  rounds.get(currentRound).findWinner(activePlayers);
+                String winnersString = "";
+                for (Player winner:
+                     winners) {
+                    winnersString += "\nWnner: " + winner.getName() + " best hand: " + winner.getBestPlayerHand() +
+                            "\nHand Value: " + winner.getHandValue() + " High: " + winner.getHighCard() + " kick: " + winner.getKicker();
+                }
+
+                JOptionPane.showMessageDialog(null, winnersString);
 
             }else{
                 onePlayerleft(activePlayers, newGame);
@@ -206,6 +215,8 @@ public class PlayGame {
                         newTable.updatePlayer(player, rounds.get(currentRound));
                         if (player.bestPlayerHand != null){
                             player.bestPlayerHand.clear();
+                            player.setKicker(0);
+                            player.setHighCard(0);
                         }
 
                         activePlayers.remove(player);
@@ -213,6 +224,9 @@ public class PlayGame {
                         player.setStatus("newTurn");
                         player.setCurrentBet(0);
                         newTable.updatePlayer(player, rounds.get(currentRound));
+                        player.bestPlayerHand.clear();
+                        player.setKicker(0);
+                        player.setHighCard(0);
                     }
                 }
                 // Create New round for players

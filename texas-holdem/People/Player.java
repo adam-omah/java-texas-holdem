@@ -205,7 +205,7 @@ public abstract class Player implements Person {
                         temp2.sort(Comparator.comparing(Card::getValue));
 
                         tempValue = 900;
-                        this.setHighCard(temp.get(i).getValue());
+                        this.setHighCard(temp2.get(4).getValue());
                         setHandTempValue(temp2, tempValue);
                         return;
                     }
@@ -618,6 +618,7 @@ public abstract class Player implements Person {
 
                 // flush only goes to high card wins.
                 setHighCard(temp.get(4).getValue());
+                setKicker(temp.get(3).getValue());
 
                 tempValue = 600;
                 setHandTempValue(temp, tempValue);
@@ -635,7 +636,7 @@ public abstract class Player implements Person {
                 if(i == 0){
                     temp.add(possibleCards.get(i));
                 }else {
-                    if (temp.get(tempInd).getValue() == possibleCards.get(i).getValue()){
+                    if (temp.get(temp.size()-1).getValue() == possibleCards.get(i).getValue()){
 
                     }else{
                         temp.add(possibleCards.get(i));
@@ -643,8 +644,6 @@ public abstract class Player implements Person {
                     }
                 }
             }
-
-
             // check if temp in sequence of 5?
             // high straight:
             for (int i = (temp.size()-1); i > 0; i--) {
@@ -666,6 +665,8 @@ public abstract class Player implements Person {
                     temp2.sort(Comparator.comparing(Card::getValue));
 
                     tempValue = 500;
+                    setHighCard(temp2.get(4).getValue());
+                    setKicker(temp2.get(3).getValue());
                     setHandTempValue(temp2, tempValue);
                     return;
                 }
@@ -692,11 +693,12 @@ public abstract class Player implements Person {
                 this.bestPlayerHand = temp2;
                 return;
             }
+        // clear temp. After Straight not possible.
+        temp.clear();
 
         // is triples possible? Hand Value 4--!
         if(trips1 != 0){
-            // clear temp.
-            temp.clear();
+
             int cardsAdded = 0;
             for (Card card:possibleCards
                  ) {
@@ -727,8 +729,6 @@ public abstract class Player implements Person {
         // is two pair possible? Hand Value 3--!
         int lowPair = 0;
         if (pair1 != 0 && pair2 !=0){
-            // clear temp to avoid any issues.
-            temp.clear();
             if (pair3 == 0){
                 if (pair1 > pair2){
                     highPair = pair1;
@@ -776,7 +776,6 @@ public abstract class Player implements Person {
         // is pair possible? Hand Value 2--!
 
         if(pair1 !=0){
-            temp.clear();
 
             int cardsAdded = 0;
 
@@ -803,18 +802,34 @@ public abstract class Player implements Person {
             tempValue = 200;
             setHandTempValue(temp, tempValue);
             return;
-
-
         }
 
         // Pick highest cards if not even pairs possible. Hand Value 1--!
+        int cardsAdded = 0;
 
-        if(temp != null && temp.size() == 5){
-            this.bestPlayerHand = temp;
-        }else{
-            this.bestPlayerHand = round.getTableCards();
+        for (Card card: possibleCards){
+            if(card.getValue() == pair1){
+                temp.add(card);
+            }
         }
-        possibleCards.clear();
+
+        for (int i = possibleCards.size()-1; i > 0; i--) {
+                temp.add(possibleCards.get(i));
+                cardsAdded++;
+                if(cardsAdded ==5){
+                    break;
+                }
+            }
+
+        temp.sort(Comparator.comparing(Card::getValue));
+
+        setHighCard(temp.get(4).getValue());
+        setKicker(temp.get(3).getValue());
+
+        tempValue = 100;
+        setHandTempValue(temp, tempValue);
+
+
 
     }
 

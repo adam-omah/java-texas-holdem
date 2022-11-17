@@ -200,10 +200,14 @@ public class PlayerTurn extends JFrame{
 
                 // set new bet for player.
                 player.setCurrentBet(player.getCurrentBet()+ player.getFunds());
+
+                round.setPool(round.getPool() +player.getFunds());
+
                 //remove funds from player.
                 player.setFunds(0);
 
                 player.setStatus("allin");
+                //add bet to pool:
 
                 setTurnTaken(true);
                 setVisible(false);

@@ -17,11 +17,12 @@ public class Pro extends Player {
     public Pro(String name, String address, GregorianCalendar dateOfBirth) {
         super(name, address, dateOfBirth);
         setFunds(750);
-        setRanking(playerTotal+1);
+        setRanking(0);
         playerTotal++;
         setStatus("playing");
         setCurrentBet(0);
     }
+
 
     @Override
     public String toString() {
@@ -81,6 +82,8 @@ public class Pro extends Player {
             ranking = playerTotal;
         }
     }
+
+
 
     @Override
     public String getCategory() {

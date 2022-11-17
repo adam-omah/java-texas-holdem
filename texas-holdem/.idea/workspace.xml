@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameRounds/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/GameRounds/Round.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameRounds/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/GameRounds/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/Amateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Amateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/People/TestPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/TestPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/Pro.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/Pro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerTurn.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerTurn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,17 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ToolWindowDuplicates.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindowDuplicates.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "C:/Users/Adam/Desktop/JavaOOP",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,6 +84,7 @@
       <workItem from="1668630838136" duration="4228000" />
       <workItem from="1668676634036" duration="5655000" />
       <workItem from="1668695453105" duration="5972000" />
+      <workItem from="1668702628839" duration="3792000" />
     </task>
     <servers />
   </component>

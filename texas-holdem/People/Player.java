@@ -230,6 +230,7 @@ public abstract class Player implements Person {
 
                     tempValue = 915;
                     this.setHighCard(5);
+                    this.setKicker(4);
                     this.setHandValue(tempValue);
                     this.bestPlayerHand = temp2;
                     return;
@@ -689,6 +690,8 @@ public abstract class Player implements Person {
 
                 temp2.sort(Comparator.comparing(Card::getValue));
                 tempValue = 515;
+                this.setHighCard(5);
+                this.setKicker(4);
                 this.setHandValue(tempValue);
                 this.bestPlayerHand = temp2;
                 return;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GameSession {
     private ArrayList<Round> rounds;
     private ArrayList<Player> players;
-    private ArrayList<String> roundWinners;
+    private ArrayList<Player> roundWinners;
 
     private Player winner;
 
@@ -20,13 +20,14 @@ public class GameSession {
     public GameSession(ArrayList<Player> players) {
         setPlayers(players);
         ArrayList<Round> gameRounds = new ArrayList<Round>();
+        ArrayList<Player> winners = new ArrayList<Player>();
 
         // first round always added when new Game session.
         Round round = new Round(players);
         gameRounds.add(round);
 
         setRounds(gameRounds);
-        setRoundWinners(roundWinners);
+        setRoundWinners(winners);
         setGameOver(false);
 
         setCurrentRound(0);
@@ -40,9 +41,9 @@ public class GameSession {
                 "\n players=" + players +
                 "\n winners=";
         if(roundWinners != null){
-            for (String winner: roundWinners
+            for (Player winner: roundWinners
             ) {
-                out += winner;
+                out += winner.getName();
             }
 
         }
@@ -90,11 +91,11 @@ public class GameSession {
         this.players = players;
     }
 
-    public ArrayList<String> getRoundWinners() {
+    public ArrayList<Player> getRoundWinners() {
         return roundWinners;
     }
 
-    public void setRoundWinners(ArrayList<String> roundWinners) {
+    public void setRoundWinners(ArrayList<Player> roundWinners) {
         this.roundWinners = roundWinners;
     }
 }

@@ -201,6 +201,21 @@ public class PlayGame {
 
                 JOptionPane.showMessageDialog(null, winnersString);
 
+                if(winners.size() >=2){
+                    // Split the pot with winners.
+                    int splitPot = rounds.get(currentRound).getPool()/ winners.size();
+
+                    for (Player player:winners
+                         ) {
+                        player.setFunds(player.getFunds() + splitPot);
+                        newGame.getRoundWinners().add(player);
+                    }
+
+                }else{
+                    winners.get(0).setFunds(winners.get(0).getFunds() + rounds.get(currentRound).getPool());
+                    newGame.getRoundWinners().add(winners.get(0));
+                }
+
             }else{
                 onePlayerleft(activePlayers, newGame);
             }
@@ -278,11 +293,11 @@ public class PlayGame {
             }
         }
         if (newGame.getRoundWinners() == null && winner != null){
-            ArrayList<String> winners = new ArrayList<>();
-            winners.add(winner.getName());
+            ArrayList<Player> winners = new ArrayList<>();
+            winners.add(winner);
             newGame.setRoundWinners(winners);
         } else if(winner != null && newGame.getRoundWinners() == null){
-            newGame.getRoundWinners().add(winner.getName());
+            newGame.getRoundWinners().add(winner);
         }
     }
 

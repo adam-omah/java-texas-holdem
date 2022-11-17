@@ -173,7 +173,6 @@ public abstract class Player implements Person {
                     tempValue = 0;
                 }
                 // is straight flush possible? Hand Value 9--!
-
                 //check each card for sequence.
                 // make temp and remove duplicates.
 
@@ -524,6 +523,7 @@ public abstract class Player implements Person {
         }
 
         if(fourOfAKind != 0){
+            // set 4 of kind card value to high card.
             setHighCard(fourOfAKind);
             temp.clear();
 
@@ -548,19 +548,7 @@ public abstract class Player implements Person {
                     break;
                 }
             }
-
             // Set Best Hand + Hand Value.
-
-            // Testing for if temp cards are in order.
-//            output += "\nTemps:\n";
-//            for (Card card: temp
-//            ) {
-//                output += card.getValue() + "\n";
-//            }
-//
-//
-//            JOptionPane.showMessageDialog(null, output);
-
             tempValue = 800;
             setHandTempValue(temp, tempValue);
             return;
@@ -607,9 +595,37 @@ public abstract class Player implements Person {
             setHandTempValue(temp, tempValue);
             return;
         }
-
-
         // is a flush possible? Hand Value 6--!
+
+        if(flushPossible){
+            for (Card card: possibleCards
+                 ) {
+                if(card.getSuit() == flushSuite){
+                    temp.add(card);
+                }
+            }
+
+            temp.sort(Comparator.comparing(Card::getValue));
+
+//            JOptionPane.showMessageDialog(null, "Made it here");
+
+            if(temp.size() >= 5){
+                if(temp.size() > 5){
+                    while(temp.size() > 5){
+                        temp.remove(0);
+                    }
+                }
+
+                // flush only goes to high card wins.
+                setHighCard(temp.get(4).getValue());
+
+                tempValue = 600;
+                setHandTempValue(temp, tempValue);
+                return;
+            }
+        }
+
+
         // is a straight possible? Hand Value 5--!
             // check if temp in sequence of 5?
             //check each card for sequence.
@@ -671,7 +687,6 @@ public abstract class Player implements Person {
                 temp2.add(temp.get(3));
 
                 temp2.sort(Comparator.comparing(Card::getValue));
-
                 tempValue = 515;
                 this.setHandValue(tempValue);
                 this.bestPlayerHand = temp2;
@@ -680,12 +695,118 @@ public abstract class Player implements Person {
 
         // is triples possible? Hand Value 4--!
         if(trips1 != 0){
-            
+            // clear temp.
+            temp.clear();
+            int cardsAdded = 0;
+            for (Card card:possibleCards
+                 ) {
+                if(card.getValue() == trips1){
+                    temp.add(card);
+                }
+            }
+            for (int i = possibleCards.size()-1; i > 0; i--) {
+                if(possibleCards.get(i).getValue() != trips1){
+                    temp.add(possibleCards.get(i));
+                    cardsAdded++;
+                    if(cardsAdded ==2){
+                        break;
+                    }
+                }
+            }
+
+            setHighCard(trips1);
+            setKicker(temp.get(3).getValue());
+
+            tempValue = 400;
+            setHandTempValue(temp, tempValue);
+            return;
+
         }
         
         
         // is two pair possible? Hand Value 3--!
+        int lowPair = 0;
+        if (pair1 != 0 && pair2 !=0){
+            // clear temp to avoid any issues.
+            temp.clear();
+            if (pair3 == 0){
+                if (pair1 > pair2){
+                    highPair = pair1;
+                    lowPair = pair2;
+                }else{
+                    highPair = pair2;
+                    lowPair = pair1;
+                }
+            }else{
+                if (pair1 > pair2 && pair1 > pair3){
+                    highPair = pair1;
+                    lowPair = Math.max(pair2, pair3);
+                } else if (pair2 > pair3 && pair2 > pair1) {
+                    highPair = pair2;
+                    lowPair = Math.max(pair1, pair3);
+                }else{
+                    highPair = pair3;
+                    lowPair = Math.max(pair1, pair2);
+                }
+            }
+
+            for (Card card: possibleCards){
+                if(card.getValue() == highPair || card.getValue() == lowPair){
+                    temp.add(card);
+                }
+            }
+
+            for (int i = possibleCards.size()-1; i > 0; i--) {
+                if(possibleCards.get(i).getValue() == highPair || possibleCards.get(i).getValue() == lowPair){
+
+                }else{
+                    temp.add(possibleCards.get(i));
+                    break;
+                }
+            }
+
+            setKicker(Math.max(temp.get(4).getValue(), lowPair));
+            setHighCard(highPair);
+            tempValue = 300;
+            setHandTempValue(temp, tempValue);
+            return;
+
+        }
+
         // is pair possible? Hand Value 2--!
+
+        if(pair1 !=0){
+            temp.clear();
+
+            int cardsAdded = 0;
+
+            for (Card card: possibleCards){
+                if(card.getValue() == pair1){
+                    temp.add(card);
+                }
+            }
+
+            for (int i = possibleCards.size()-1; i > 0; i--) {
+                if(possibleCards.get(i).getValue() != pair1){
+                    temp.add(possibleCards.get(i));
+                    cardsAdded++;
+                    if(cardsAdded ==3){
+                        break;
+                    }
+                }
+            }
+
+
+            setHighCard(pair1);
+            setKicker(temp.get(2).getValue());
+
+            tempValue = 200;
+            setHandTempValue(temp, tempValue);
+            return;
+
+
+        }
+
         // Pick highest cards if not even pairs possible. Hand Value 1--!
 
         if(temp != null && temp.size() == 5){

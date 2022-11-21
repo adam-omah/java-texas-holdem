@@ -23,7 +23,8 @@ public class Amateur extends Player {
         playerTotal++;
         setStatus("playing");
         setCurrentBet(0);
-
+        setRoundWins(0);
+        setGameWins(0);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class Amateur extends Player {
 
     @Override
     public String getCategory() {
-        return "Ameture";
+        return "Amateur";
     }
 
     @Override

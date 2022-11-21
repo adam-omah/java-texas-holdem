@@ -1,6 +1,8 @@
 package CardPack;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
 
     // Suits can either be:
     // S for spades, D for diamonds, C for clubs, H for hearts and J for Joker.

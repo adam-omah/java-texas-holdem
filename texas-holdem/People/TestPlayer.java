@@ -4,11 +4,56 @@ import CardPack.*;
 import GameRounds.Round;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class TestPlayer {
     public static void main(String[] args) {
+
+        // testing the loading of the game
+        File inFile	= new File("players_test.data");
+
+        try {
+            FileInputStream inStream = new FileInputStream(inFile);
+
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+
+            ArrayList<Player> playerList = (ArrayList<Player>) objectInStream.readObject();
+
+            String fileString = "";
+
+            Player ap1 = playerList.get(0);
+            Player ap2 = playerList.get(2);
+
+
+            JOptionPane.showMessageDialog(null, "Testing Loaded Players from Stream: " + ap1.getName() + "\n" + ap2.getName());
+
+            inStream.close();
+        }
+        catch(FileNotFoundException fnfe){
+            fnfe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"File could not be found!",
+                    "Problem Finding File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException ioe){
+            ioe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"File could not be read!",
+                    "Problem Reading From File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Could not find the appropriate class!",
+                    "Problem Finding the Class!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch (ClassCastException cce) {
+            cce.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Could not convert the object to the appropriate class!",
+                    "Problem Converting Object!",JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
         String out = "" , out2 = "";
         Pro p1 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
         Pro p2 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
@@ -202,5 +247,39 @@ public class TestPlayer {
 
         JOptionPane.showMessageDialog(null, out2);
 
+        File outFile = new File("players_test.data");
+
+        try {
+            FileOutputStream outStream = new FileOutputStream(outFile);
+
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
+
+            Pro pr1 = p1;
+            Pro pr2 = p2;
+
+
+            Amateur pa3 = p6;
+            Amateur pa4 = p7;
+            ArrayList<Player> playersStored = new ArrayList<>();
+
+            playersStored.add(pr1);
+            playersStored.add(pr2);
+            playersStored.add(pa3);
+            playersStored.add(pa4);
+
+            objectOutStream.writeObject(playersStored);
+
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe){
+            System.out.println(fnfe.getStackTrace());
+            JOptionPane.showMessageDialog(null,"File could not be found!",
+                    "Problem Finding File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException ioe){
+            System.out.println(ioe.getStackTrace());
+            JOptionPane.showMessageDialog(null,"File could not be written!",
+                    "Problem Writing to File!",JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

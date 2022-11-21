@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
+import java.io.Serializable;
 
-public abstract class Player implements Person {
+
+public abstract class Player implements Serializable{
     private String name;
     private String address;
     private GregorianCalendar dateOfBirth;
 
     public static int playerTotal = 0;
-
-
 
     public abstract String getCategory();
     public abstract int getFunds();
@@ -35,6 +35,26 @@ public abstract class Player implements Person {
     // this is the poker terminologoy for these card values too.
     public int highCard;
     public int kicker;
+
+    public int roundWins;
+
+    public int GameWins;
+
+    public int getRoundWins() {
+        return roundWins;
+    }
+
+    public void setRoundWins(int roundWins) {
+        this.roundWins = roundWins;
+    }
+
+    public int getGameWins() {
+        return GameWins;
+    }
+
+    public void setGameWins(int gameWins) {
+        GameWins = gameWins;
+    }
 
     public int getHighCard() {
         return highCard;
@@ -853,32 +873,32 @@ public abstract class Player implements Person {
         this.handValue = handValue;
     }
 
-    @Override
+
     public String getName() {
         return name;
     }
 
-    @Override
+
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
+
     public String getAddress() {
         return address;
     }
 
-    @Override
+
     public void setAddress(String address) {
         this.address = address;
     }
 
-    @Override
+
     public GregorianCalendar getDateOfBirth() {
         return dateOfBirth;
     }
 
-    @Override
+
     public void setDateOfBirth(GregorianCalendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }

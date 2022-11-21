@@ -5,6 +5,7 @@ import CardPack.Card;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
+
 public class Pro extends Player {
     private int funds;
     private int ranking;
@@ -21,6 +22,8 @@ public class Pro extends Player {
         playerTotal++;
         setStatus("playing");
         setCurrentBet(0);
+        setRoundWins(0);
+        setGameWins(0);
     }
 
 

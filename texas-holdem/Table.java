@@ -4,6 +4,8 @@ import GameRounds.Round;
 import People.Player;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Table extends JFrame {
@@ -17,6 +19,7 @@ public class Table extends JFrame {
     private JTextPane txtPlayer2;
     private JTextPane txtPlayer1;
     private JTextPane txtCards;
+    private JButton btnEndGame;
 
     private String cardsText = "";
 
@@ -64,6 +67,12 @@ public class Table extends JFrame {
         }
 
         setVisible(true);
+        btnEndGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.setGameOver(true);
+            }
+        });
     }
 
     public void updatePlayer(Player player , Round round){

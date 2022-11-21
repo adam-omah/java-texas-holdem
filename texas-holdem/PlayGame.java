@@ -3,24 +3,79 @@ import People.*;
 import GameRounds.*;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class PlayGame {
     public static void main(String[] args) {
-        Pro p1 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
+        Pro p1 = new Pro("test","Tralee", new GregorianCalendar(1982,10,10));
         Pro p2 = new Pro("James","Tralee", new GregorianCalendar(1982,10,10));
         Amateur p3 = new Amateur("Adam","Tralee", new GregorianCalendar(1982,10,10));
         Amateur p4 = new Amateur("Gary","Tralee", new GregorianCalendar(1982,10,10));
 
+        File inFile	= new File("players.data");
+
+        try {
+            FileInputStream inStream = new FileInputStream(inFile);
+
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+
+            ArrayList<Player> playerList = (ArrayList<Player>) objectInStream.readObject();
+
+            p1 = (Pro) playerList.get(0);
+            p2 = (Pro) playerList.get(1);
+            p3 = (Amateur) playerList.get(2);
+            p3 = (Amateur) playerList.get(3);
+
+            inStream.close();
+        }
+        catch(FileNotFoundException fnfe){
+            fnfe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"File could not be found!",
+                    "Problem Finding File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException ioe){
+            ioe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"File could not be read!",
+                    "Problem Reading From File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Could not find the appropriate class!",
+                    "Problem Finding the Class!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch (ClassCastException cce) {
+            cce.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Could not convert the object to the appropriate class!",
+                    "Problem Converting Object!",JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Checks if data was loaded in, if not it loads the base data.
+        if(p1.getName().equals("test")){
+            p1 = new Pro("John","Tralee", new GregorianCalendar(1982,10,10));
+            p2 = new Pro("James","Tralee", new GregorianCalendar(1982,10,10));
+            p3 = new Amateur("Adam","Tralee", new GregorianCalendar(1982,10,10));
+            p4 = new Amateur("Gary","Tralee", new GregorianCalendar(1982,10,10));
+
+        }
 
 
         ArrayList<Player> activePlayers = new ArrayList<Player>();
         Player[] startingPlayers = {p1,p2,p3,p4};
-
+        // reset all player funds to same as new game.
         for (Player player:startingPlayers
         ) {
             activePlayers.add(player);
+            // if player is pro set funds to 750.
+            if (player.getCategory().equals("Pro")){
+                player.setFunds(750);
+            }else {
+                //Amateur's get 1000 funds to play with.
+                player.setFunds(1000);
+            }
+
+
         }
         GameSession newGame = new GameSession(activePlayers);
 
@@ -192,11 +247,12 @@ public class PlayGame {
                 }
 
                 ArrayList<Player> winners =  rounds.get(currentRound).findWinner(activePlayers);
-                String winnersString = "";
+                String winnersString = "Round Over!! \n";
                 for (Player winner:
                      winners) {
+                    winner.setRoundWins(winner.getRoundWins() + 1);
                     winnersString += "\nWnner: " + winner.getName() + " best hand: " + winner.getBestPlayerHand() +
-                            "\nHand Value: " + winner.getHandValue() + " High: " + winner.getHighCard() + " kick: " + winner.getKicker();
+                            "\nHand Value: " + winner.getHandValue() + " High: " + winner.getHighCard() + " kick: " + winner.getKicker() + "\n";
                 }
 
                 JOptionPane.showMessageDialog(null, winnersString);
@@ -257,13 +313,66 @@ public class PlayGame {
 
             // this is just a reminder that after the full itteration the players hand when called by
             // newgame.tostring will show the same hand for each round as it's retrieving the current hand.
-            JOptionPane.showMessageDialog(null,"Round Over!!!\n" + newGame.toString());
+        }
+
+        // Game winner:
+        Player winner = activePlayers.get(0);
+        for (int i = 0; i < activePlayers.size(); i++) {
+            if (i != 0){
+                if (winner.getFunds() < activePlayers.get(i).getFunds()){
+                    winner = activePlayers.get(i);
+                }
+            }
+        }
+
+        winner.setGameWins(winner.getGameWins() + 1);
+
+        String gameFinished = "Game Over!!! \n";
+
+        for (Player player: startingPlayers
+             ) {
+            gameFinished += "\n" + player.getName() + "  Round Wins: " + player.getRoundWins() + " Game Wins: " + player.getGameWins();
         }
 
 
         // End of Game, all rounds have finished:
-        JOptionPane.showMessageDialog(null,"Game over!!!\n" + newGame.toString());
+        JOptionPane.showMessageDialog(null,gameFinished);
+        StorePlayerData((Pro) startingPlayers[0], (Pro) startingPlayers[1], (Amateur) startingPlayers[2], (Amateur) startingPlayers[3]);
 
+        // Close table and end program.
+        newTable.setVisible(false);
+        System.exit(0);
+
+    }
+
+    private static void StorePlayerData(Pro p1, Pro p2, Amateur p3, Amateur p4) {
+        File outFile = new File("players.data");
+
+        try {
+            FileOutputStream outStream = new FileOutputStream(outFile);
+
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
+            ArrayList<Player> playersStored = new ArrayList<>();
+
+            playersStored.add(p1);
+            playersStored.add(p2);
+            playersStored.add(p3);
+            playersStored.add(p4);
+
+            objectOutStream.writeObject(playersStored);
+
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe){
+            System.out.println(fnfe.getStackTrace());
+            JOptionPane.showMessageDialog(null,"File could not be found!",
+                    "Problem Finding File!",JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException ioe){
+            System.out.println(ioe.getStackTrace());
+            JOptionPane.showMessageDialog(null,"File could not be written!",
+                    "Problem Writing to File!",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private static boolean isGameOver( ArrayList<Player> activePlayers) {
@@ -384,5 +493,4 @@ public class PlayGame {
             }
         }
     }
-
 }

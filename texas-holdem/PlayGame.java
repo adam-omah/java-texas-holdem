@@ -327,7 +327,7 @@ public class PlayGame {
 
         winner.setGameWins(winner.getGameWins() + 1);
 
-        String gameFinished = "Game Over!!! \n";
+        String gameFinished = "Game Over!!! \n\nWinner: " + winner.getName() + "\n\nStatistics: \n";
 
         for (Player player: startingPlayers
              ) {

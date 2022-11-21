@@ -5,7 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e353a880-e4f7-4549-8feb-ae6bb904ffcd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/People/Pro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/People/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/People/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/jquery-ui.overrides.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/legal/COPYRIGHT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/legal/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/resources/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/resources/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_glass_55_fbf9ee_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_glass_65_dadada_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_glass_75_dadada_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_glass_75_e6e6e6_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_glass_95_fef1ec_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-bg_highlight-soft_75_cccccc_1x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-icons_222222_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-icons_2e83ff_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-icons_454545_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-icons_888888_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/images/ui-icons_cd0a0a_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script-dir/jquery-ui.structure.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pro Java Docs/type-search-index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/People/TestPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/People/TestPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/Pro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/Pro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/texas-holdem/People/TestPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/players.data" beforeDir="false" afterPath="$PROJECT_DIR$/players.data" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +133,7 @@
       <workItem from="1668695453105" duration="5972000" />
       <workItem from="1668702628839" duration="3830000" />
       <workItem from="1668718286072" duration="465000" />
-      <workItem from="1669022840077" duration="9051000" />
+      <workItem from="1669022840077" duration="10168000" />
     </task>
     <servers />
   </component>

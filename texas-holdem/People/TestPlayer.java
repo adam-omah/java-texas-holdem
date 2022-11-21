@@ -12,6 +12,7 @@ public class TestPlayer {
     public static void main(String[] args) {
 
         // testing the loading of the game
+        // the boilerplate for serialization code was taken from lab sheet 15, and modified for its current use.
         File inFile	= new File("players_test.data");
 
         try {

@@ -1,11 +1,17 @@
+
+/**
+ * An Abstract class which defines a player.
+ * contains all the information needed for the game to use a player.
+ * @author Adam O'Mahony.
+ */
+
 package People;
 
 import CardPack.Card;
 import GameRounds.Round;
 
-import javax.swing.*;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.io.Serializable;
@@ -18,13 +24,40 @@ public abstract class Player implements Serializable{
 
     public static int playerTotal = 0;
 
+    /**
+     * Method to set the current Category of the player.
+     * @return a String Representing the Category of a player. (Pro or  Amateur).
+     */
     public abstract String getCategory();
+
+    /**
+     * Method to get the current Funds of the player.
+     * @return returns the current funds of a player.
+     */
     public abstract int getFunds();
+    /**
+     * Method to get the Rank of the player.
+     * @return returns the current rank of a player.
+     */
     public abstract int getRanking();
+
+    /**
+     * Method to return the current bet of the player.
+     * @return a Integer value containing the current bet.
+     */
     public abstract int getCurrentBet();
 
+    /**
+     * Method to return the player's status
+     * @return a String value containing the status of the player.
+     * players can have the status of 'out', 'allin', 'fold', 'playing'
+     * this value is used in the logic of the game.
+     */
     public abstract String getStatus();
-
+    /**
+     * Method to return the current Cards of the player.
+     * @return an Array of Card Objects which represent the 2 cards in a players hand..
+     */
     public abstract Card[] getCards();
 
     public ArrayList<Card> bestPlayerHand;
@@ -40,47 +73,93 @@ public abstract class Player implements Serializable{
 
     public int GameWins;
 
+    /**
+     * Method to return the round wins  of the player.
+     * @return Integer that represents amount of rounds won.
+     */
     public int getRoundWins() {
         return roundWins;
     }
 
+    /**
+     * Method to return the round wins  of the player.
+     * @param roundWins  Integer that represents amount of rounds won.
+     */
+
     public void setRoundWins(int roundWins) {
         this.roundWins = roundWins;
     }
-
+    /**
+     * Method to return the Game wins  of the player.
+     * @return Integer that represents amount of games won.
+     */
     public int getGameWins() {
         return GameWins;
     }
-
+    /**
+     * Method to return the Game wins  of the player.
+     * @param gameWins  Integer that represents amount of games won.
+     */
     public void setGameWins(int gameWins) {
         GameWins = gameWins;
     }
-
+    /**
+     * Method to return the current high card of the player.
+     * @return Integer that represents the high card.
+     */
     public int getHighCard() {
         return highCard;
     }
-
+    /**
+     * Method to return the current high card of the player.
+     * @param highCard Integer that represents the high card.
+     */
     public void setHighCard(int highCard) {
         this.highCard = highCard;
     }
 
+    /**
+     * Method to return the current Kicker card of the player.
+     * @return Integer that represents the Kicker card.
+     */
     public int getKicker() {
         return kicker;
     }
-
+    /**
+     * Method to set the current Kicker card of the player.
+     * @param kicker  Integer that represents the Kicker card.
+     */
     public void setKicker(int kicker) {
         this.kicker = kicker;
     }
 
+
+    /**
+     * Player 3 argument Constructor
+     * @param name The Name of the player.
+     * @param address The player's address.
+     * @param dateOfBirth the players date of birth.
+     */
     public Player(String name, String address, GregorianCalendar dateOfBirth) {
         setName(name);
         setAddress(address);
         setDateOfBirth(dateOfBirth);
     }
 
+    /**
+     * Method to return the current Cards of the player.
+     * @return an Array of Card Objects which represent the 2 cards in a players hand..
+     */
     public ArrayList<Card> getBestPlayerHand() {
         return bestPlayerHand;
     }
+
+    /**
+     * Method to set the Best Possible Cards for the player.
+     * this method is the key to finding the winner of the game.
+     * complicated logic that relates to the way the game functions and choice of cards is based of texas holdem.
+     *
+     */
 
     public void setBestPlayerHand(Round round) {
         String output = "";
@@ -865,49 +944,85 @@ public abstract class Player implements Serializable{
         this.bestPlayerHand = temp;
     }
 
+    /**
+     * Method to return the hand value of the player.
+     * @return Integer that represents hand value.
+     */
+
     public int getHandValue() {
         return handValue;
     }
 
+    /**
+     * Method to return the hand value of the player.
+     * @param handValue  Integer that represents hand value.
+     */
     public void setHandValue(int handValue) {
         this.handValue = handValue;
     }
 
-
+    /**
+     * Method to return the name of the player.
+     * @return String that represents the name of the player.
+     */
     public String getName() {
         return name;
     }
 
-
+    /**
+     * Method to return the name of the player.
+     * @param name String that represents the name of the player.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-
+    /**
+     * Method to return the Address of the player.
+     * @return String that represents the Address of the player.
+     */
     public String getAddress() {
         return address;
     }
 
-
+    /**
+     * Method to return the Address of the player.
+     * @param address  String that represents the Address of the player.
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
-
+    /**
+     * Method to return the Date of Birth of the player.
+     * @return Date that represents the Date of Birth  of the player.
+     */
     public GregorianCalendar getDateOfBirth() {
         return dateOfBirth;
     }
 
-
+    /**
+     * Method to return the Date of Birth of the player.
+     * @param dateOfBirth  Date that represents the Date of Birth  of the player.
+     */
     public void setDateOfBirth(GregorianCalendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * abstract Method to set the cards of the player.
+     */
     public abstract void setCards(Card[] cards);
-
+    /**
+     * abstract Method to set the Current Bet of the player.
+     */
     public abstract void setCurrentBet(int currBet);
-
+    /**
+     * abstract Method to set the Current Status of the player.
+     */
     public  abstract void setStatus(String status);
-
+    /**
+     * abstract Method to set the Current Funds of the player.
+     */
     public abstract void setFunds(int newFunds);
 }
